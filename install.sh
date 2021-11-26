@@ -30,3 +30,4 @@ source install/git.sh
 source install/nvim.sh
 source install/alacritty.sh
 source install/tmux.sh
+source install/node.sh
