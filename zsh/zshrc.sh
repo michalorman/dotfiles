@@ -17,11 +17,7 @@ if [ -f "$GIT_PROMPT_FILE" ]; then
 	RPROMPT='%F{240}$(__git_ps1 " (%s)")'
 fi
 
-VOLTA_HOME="$HOME/.volta"
-
-if [ -f "$VOLTA_HOME" ]; then
-	export $VOLTA_HOME
-	export PATH="$VOLTA_HOME/bin:$PATH"
-fi
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

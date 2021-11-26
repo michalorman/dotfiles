@@ -24,3 +24,9 @@ alias fix-broken-osx-sound="sudo kill `ps -ax | grep 'coreaudiod' | grep 'sbin' 
 
 alias la='ls -a'
 alias ll='ls -al'
+
+alias dotcode='code $DOTFILES'
+
+alias tmux='tmux -2'
+alias ts='tmux new -s "$(basename $PWD)"'
+alias tls='tmux ls'
