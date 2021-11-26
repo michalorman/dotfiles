@@ -3,29 +3,30 @@
 source lib/helpers.sh
 
 install_linux() {
-	header1 "Configuring Linux..."
+  header1 "Configuring Linux..."
 
-	source install/pacman.sh
+  source install/pacman.sh
 }
 
 install_mac() {
-	header1 "Configuring Mac..."
+  header1 "Configuring Mac..."
 
-	source install/brew.sh
-	source install/zsh.sh
-	source install/git.sh
-	source install/nvim.sh
-	source install/alacritty.sh
-	source install/tmux.sh
+  source install/brew.sh
+  source install/zsh.sh
 
-	header1 "\n👍 Mac is ready!"
+  header1 "\n👍 Mac is ready!"
 }
 
 case "$(uname -s)" in
-	Linux*)
-		install_linux
-		;;
-	Darwin*)
-		install_mac
-		;;
+  Linux*)
+    install_linux
+    ;;
+  Darwin*)
+    install_mac
+    ;;
 esac
+
+source install/git.sh
+source install/nvim.sh
+source install/alacritty.sh
+source install/tmux.sh
