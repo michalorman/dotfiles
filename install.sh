@@ -5,7 +5,9 @@ source lib/helpers.sh
 install_linux() {
   header1 "Configuring Linux..."
 
-  source install/pacman.sh
+  source install/garuda.sh
+  source install/fish.sh
+  source install/starship.sh # move to general
 }
 
 install_mac() {

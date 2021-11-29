@@ -18,6 +18,7 @@ set noshowmode
 set background=dark
 set signcolumn=number
 set shortmess+=c
+set cursorline
 
 colorscheme OceanicNext
 
