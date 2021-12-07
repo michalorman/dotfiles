@@ -3,11 +3,15 @@
 source lib/helpers.sh
 
 install_linux() {
-  header1 "Configuring Linux..."
+	case "$(lsb_release -si)" in
+		Pop*)
+			source install/popos.sh
+		;;
+	esac
 
-  source install/garuda.sh
-  source install/fish.sh
-  source install/starship.sh # move to general
+  #source install/garuda.sh
+  #source install/fish.sh
+  #source install/starship.sh # move to general
 }
 
 install_mac() {
@@ -28,8 +32,8 @@ case "$(uname -s)" in
     ;;
 esac
 
-source install/git.sh
-source install/nvim.sh
-source install/alacritty.sh
-source install/tmux.sh
-source install/node.sh
+#source install/git.sh
+#source install/nvim.sh
+#source install/alacritty.sh
+#source install/tmux.sh
+#source install/node.sh

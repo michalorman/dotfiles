@@ -25,7 +25,7 @@ font:
     family: FiraCode Nerd Font
     style: Bold Italic
 
-  size: 10
+  size: 12
   offset:
     x: 0
     y: 0
@@ -64,13 +64,13 @@ colors:
     cyan:    '#5fb3b3'
     white:   '#d8dee9'
 
-background_opacity: 0.95
+# background_opacity: 0.95
 
 dynamic_title: true
 
 key_bindings:
   - { key: F11, action: ToggleFullScreen }
-  - { key: V, mods: Control|Shift, action: Copy }
+  # - { key: V, mods: Control|Shift, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }
   - { key: Key0, mods: Control, action: ResetFontSize }
   - { key: Equals, mods: Control, action: IncreaseFontSize }
