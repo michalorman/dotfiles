@@ -1,4 +1,4 @@
-header1 "Installing node..."
+header1 "Installing node ${Green}${Color_Off}"
 
 curl https://get.volta.sh | bash
 

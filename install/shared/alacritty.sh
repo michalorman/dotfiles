@@ -1,5 +1,4 @@
-header2 "Configuring alacritty:"
+header1 "Configuring alacritty"
 
 symlink $HOME/Code/dotfiles/alacritty $HOME/.config/alacritty
 
-header2 "🍺 alacritty configuration done."

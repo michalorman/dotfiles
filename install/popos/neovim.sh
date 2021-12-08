@@ -1,5 +1,5 @@
 if [ ! "$(which nvim)" ]; then
-  header2 "Installing neovim"
+  header1 "Installing neovim ${Green}${Color_Off}"
 
   sudo add-apt-repository ppa:neovim-ppa/unstable
   sudo apt update

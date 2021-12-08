@@ -11,8 +11,26 @@ Purple='\033[0;35m'       # Purple
 Cyan='\033[0;36m'         # Cyan
 White='\033[0;37m'        # White
 
+header() {
+    printf "
+  ${Cyan}$1${Color_Off}
+----------------------------------------
+\n"
+}
+
+footer() {
+    printf "
+----------------------------------------
+  🍺 ${Cyan}$1${Color_Off}
+\n"
+}
+
 header1() {
-    printf "${White}$1${Color_Off}\n\n"
+    printf "
+
+  ✨ ${White}$1${Color_Off}
+----------------------------------------
+\n"
 }
 
 header2() {

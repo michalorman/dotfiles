@@ -1,5 +1,3 @@
-header2 "Configuring tmuxt:"
+header1 "Configuring tmux ${Black}${Color_Off}"
 
 symlink $HOME/Code/dotfiles/tmux/tmux.conf $HOME/.tmux.conf
-
-header2 "🍺 alacritty configuration done."

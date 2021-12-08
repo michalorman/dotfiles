@@ -1,4 +1,4 @@
-header2 "updating flatpak packages"
+header1 "Updating flatpak packages"
 
 packs=(slack spotify mailspring joplin dropbox planner)
 
