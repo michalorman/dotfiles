@@ -11,6 +11,7 @@ let g:coc_global_extensions = [
   \ 'coc-vetur',
   \ 'coc-css',
   \ 'coc-svg',
+  \ 'coc-rls',
   \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.

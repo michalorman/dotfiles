@@ -1,7 +1,10 @@
+env:
+  TERM: xterm-256color
+
 window:
   padding:
-    x: 4
-    y: 2
+    x: 0
+    y: 0
 
   decoration: none
 
@@ -22,10 +25,10 @@ font:
     family: FiraCode Nerd Font
     style: Bold Italic
 
-  size: 16
+  size: 12
   offset:
     x: 0
-    y: 2
+    y: 0
 
 # Colors (Oceanic Next)
 colors:
@@ -61,6 +64,15 @@ colors:
     cyan:    '#5fb3b3'
     white:   '#d8dee9'
 
-background_opacity: 0.95
+# background_opacity: 0.95
 
 dynamic_title: true
+
+key_bindings:
+  - { key: F11, action: ToggleFullScreen }
+  # - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: Key0, mods: Control, action: ResetFontSize }
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+  - { key: Plus, mods: Control, action: IncreaseFontSize }
+  - { key: Minus, mods: Control, action: DecreaseFontSize }

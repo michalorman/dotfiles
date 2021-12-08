@@ -24,5 +24,8 @@ Plug 'itchyny/lightline.vim'
 " Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'dracula/vim'
+Plug 'unblevable/quick-scope'
+  let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+Plug 'dag/vim-fish'
 
 call plug#end()
