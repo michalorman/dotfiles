@@ -6,7 +6,7 @@ source $HOME/Code/dotfiles/fish/aliases.fish
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH "$VOLTA_HOME/bin" $PATH
 
-source $HOME/.cargo/env
+[ -f $HOME/.cargo/env ]; and source $HOME/.cargo/env
 
 if status --is-interactive
   starship init fish | source

@@ -16,10 +16,16 @@ alias gl='git pull'
 
 alias ss='ruby -run -e httpd -- -p 5000 .'
 
-alias be='bundle exec'
-
-alias dotcode='code $DOTFILES'
-
 alias tmux='tmux -2'
 alias ts='tmux new -s (basename $PWD)'
 alias tls='tmux ls'
+
+if type -q exa
+  alias ls='exa -al --color=always --group-directories-first --icons' # preferred listing
+  alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs
+  alias ll='exa -l --color=always --group-directories-first --icons'  # long format
+  alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
+  alias l.="exa -a | egrep '^\.'"                                     # show only dotfiles
+end
+
+alias untar='tar -zxvf '
