@@ -42,6 +42,8 @@ nnoremap L $
 
 nmap <leader>.  <Plug>(coc-codeaction)
 nmap <leader>p :Prettier<CR>
+nmap <leader>c :Git<cr>
+nmap <leader>R :CocCommand workspace.renameCurrentFile<cr>
 
 " Fast saving
 nmap <leader>w :w!<cr>
