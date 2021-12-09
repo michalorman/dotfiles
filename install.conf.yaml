@@ -1,0 +1,15 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.gitconfig: git/gitconfig
+    ~/.gitignore: git/gitignore
+    ~/.tmux.conf: tmux/tmux.conf
+    ~/.config/nvim: nvim
+    ~/.config/alacritty: alacritty
+    ~/.config/starship.toml: starship/starship.toml
+    ~/.config/fish/config.fish: fish/config.fish

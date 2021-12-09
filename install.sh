@@ -27,3 +27,6 @@ case "$(uname -s)" in
     install_mac
     ;;
 esac
+
+header1 "executing dotbot-install"
+source dotbot-install
