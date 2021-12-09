@@ -9,6 +9,15 @@ set -gx PATH "$VOLTA_HOME/bin" $PATH
 [ -f $HOME/.cargo/env ]; and source $HOME/.cargo/env
 
 if status --is-interactive
-  starship init fish | source
-  neofetch
+  if type -q starship
+    starship init fish | source
+  end
+
+  if type -q neofetch
+    neofetch
+  end
+
+  if type -q zoxide
+    zoxide init fish | source
+  end
 end

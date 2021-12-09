@@ -7,7 +7,7 @@ if [ "$(basename $SHELL)" != "fish" ]; then
   chsh -s /usr/bin/fish
 fi
 
-"$(curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher)"
+# "$(curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher)"
 
 # if [ ! "$(which fisher)" ]; then
 #   curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher

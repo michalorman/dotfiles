@@ -29,3 +29,7 @@ if type -q exa
 end
 
 alias untar='tar -zxvf '
+
+if type -q fdfind
+  alias fd=fdfind
+end
