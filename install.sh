@@ -28,5 +28,3 @@ case "$(uname -s)" in
     ;;
 esac
 
-header1 "executing dotbot-install"
-source dotbot-install

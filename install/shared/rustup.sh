@@ -1,5 +1,5 @@
 if [ ! "$(rustup)" ]; then
-  header1 "Installing rust toolchains"
+  header1 "Installing toolchains for rust ${Red}${Color_Off}"
 
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
@@ -7,7 +7,7 @@ if [ ! "$(rustup)" ]; then
   # https://forum.garudalinux.org/t/getting-rust-related-error-in-fish-konsole/10373
   echo 'set --export PATH $HOME/.cargo/bin $PATH' > $HOME/.cargo/env
 else
-  header1 "Updating rust toolchains"
+  header1 "Updating toolchains for rust ${Red}${Color_Off}"
 
   rustup update
 fi
