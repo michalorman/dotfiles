@@ -3,11 +3,14 @@
 source lib/helpers.sh
 
 install_linux() {
-	case "$(lsb_release -si)" in
-		Pop*)
-			source install/popos.sh
-		;;
-	esac
+  case "$(lsb_release -si)" in
+    Pop*)
+      source install/popos.sh
+      ;;
+    axyl*)
+      source install/axyl.sh
+      ;;
+  esac
 }
 
 install_mac() {

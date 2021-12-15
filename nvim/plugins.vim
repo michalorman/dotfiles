@@ -7,6 +7,14 @@ Plug 'mhartington/oceanic-next'
 	let g:oceanic_next_terminal_bold = 1
 	let g:oceanic_next_terminal_italic = 1
 Plug 'arcticicestudio/nord-vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+  let g:tokyonight_style = "night"
+
+" Statusline
+" Plug 'nvim-lualine/lualine.nvim'
+" Plug 'kyazdani42/nvim-web-devicons'
+Plug 'itchyny/lightline.vim'
+  let g:lightline = {'colorscheme': 'tokyonight'}
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -21,10 +29,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'prettier/vim-prettier'
 Plug 'jparise/vim-graphql'
 Plug 'Yggdroot/indentLine'
-Plug 'itchyny/lightline.vim'
-  let g:lightline = {
-        \ 'colorscheme': 'onehalfdark',
-        \ }
 Plug 'ryanoasis/vim-devicons'
 Plug 'dracula/vim'
 Plug 'unblevable/quick-scope'

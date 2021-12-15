@@ -21,7 +21,7 @@ set shortmess+=c
 set cursorline
 set relativenumber
 
-colorscheme OceanicNext
+colorscheme tokyonight
 
 let mapleader = ","
 let maplocalleader = ","

@@ -13,6 +13,7 @@
     ~/.config/alacritty: alacritty
     ~/.config/starship.toml: starship/starship.toml
     ~/.config/fish/config.fish: fish/config.fish
+    ~/.config/sxhkd/sxhkdrc: sxhkd/sxhkdrc
 
-- shell:
-    - [chsh -s $(which fish), Making fish the default shell]
+      # - shell:
+      #- [chsh -s $(which fish), Making fish the default shell]
