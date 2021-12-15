@@ -2,7 +2,7 @@ header1 "Installing neovim ${Green}${Color_Off}"
 
 if [ ! "$(which nvim)" ]; then
 
-  sudo add-apt-repository ppa:neovim-ppa/unstable
+  sudo add-apt-repository ppa:neovim-ppa/unstable -y
   sudo apt update
   sudo apt install neovim -y
 fi

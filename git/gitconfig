@@ -38,28 +38,10 @@
 
 	#Show files ignored by git:
 	ign = ls-files -o -i --exclude-standard
-#[merge]
-  #conflictstyle = diff3
-  #tool = mymeld
 [merge "gemfilelock"]
   name = Relocks the Gemfile.lock
   driver = bundle install
-#[mergetool "mymeld"]
-  #cmd = meld --diff $BASE $LOCAL --diff $BASE $REMOTE --diff $LOCAL $MERGED $REMOTE
 [push]
 	default = simple
-[oh-my-zsh]
-	hide-status = 0
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustexitcode = true
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[difftool]
-	prompt = false
-[mergetool]
-	prompt = false
-[diff]
-	tool = Kaleidoscope
-[merge]
-	tool = Kaleidoscope
+[pull]
+	rebase = true

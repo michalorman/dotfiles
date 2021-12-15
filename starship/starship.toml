@@ -1,6 +1,32 @@
+# add_newline = false
+format = """$directory$character"""
+
+right_format = """$all"""
+
 [package]
+disabled = true
+
+[line_break]
 disabled = true
 
 [git_status]
 disabled = true
 
+[cmd_duration]
+disabled = true
+
+[git_branch]
+style = "purple dimmed"
+format = "[$symbol$branch ]($style)"
+
+[nodejs]
+style = "green dimmed"
+format = "[$symbol($version )]($style)"
+
+[ruby]
+style = "red dimmed"
+format = "[$symbol($version )]($style)"
+
+[rust]
+style = "red dimmed"
+format = "[$symbol($version )]($style)"

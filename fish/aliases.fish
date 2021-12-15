@@ -33,3 +33,5 @@ alias untar='tar -zxvf '
 if type -q fdfind
   alias fd=fdfind
 end
+
+alias up='sudo apt update -y && sudo apt upgrade -y'

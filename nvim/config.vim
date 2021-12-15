@@ -19,6 +19,7 @@ set background=dark
 set signcolumn=number
 set shortmess+=c
 set cursorline
+set relativenumber
 
 colorscheme OceanicNext
 
@@ -77,3 +78,5 @@ endfunction
 
 " Disable quote concealing in JSON files
 let g:vim_json_conceal=0
+
+au BufRead,BufNewFile *.mjml setlocal ft=html
