@@ -17,6 +17,11 @@ vim.opt.clipboard = 'unnamedplus'
 vim.opt.signcolumn = 'number'
 vim.opt.cursorline = true
 vim.opt.relativenumber = true
+vim.opt.background = 'dark'
+vim.opt.showmode = false
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
 
 -- Return to last edit position when opening files
 vim.cmd([[
@@ -26,44 +31,4 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 -- treat mjml files as html
 vim.cmd([[
 au BufRead,BufNewFile *.mjml setlocal ft=html
-]])
-
--- ----------------
--- Packer
-
--- Automatically execute PackerCompile whenever plugins.lua gets updated
-vim.cmd([[
-	augroup packer_user_config
-		autocmd!
-		autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-	augroup end
-]])
-
--- ----------------
--- coc
-
-vim.g.coc_global_extensions = {
-  'coc-pairs', 'coc-tsserver', 'coc-eslint', 'coc-json', 'coc-vimlsp', 'coc-tailwindcss',
-  'coc-html', 'coc-explorer', 'coc-yaml', 'coc-vetur', 'coc-css', 'coc-svg', 'coc-rls',
-}
-
-vim.cmd 'source ~/.config/nvim/vimscript/coc.vim'
-
--- ----------------
--- lightline
-
-vim.g.lightline = {
-  colorscheme = 'tokyonight'
-}
-
--- ----------------
--- quick-scope
-
-vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
-
--- ----------------
--- Prettier
-
-vim.cmd([[
-au BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.gql,*.md,*.vue PrettierAsync
 ]])
