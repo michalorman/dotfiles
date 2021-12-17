@@ -13,8 +13,12 @@ if status --is-interactive
     starship init fish | source
   end
 
-  if type -q neofetch
-    neofetch
+  # if type -q neofetch
+  #   neofetch
+  # end
+
+  if type -q colorscript
+    colorscript -r
   end
 
   if type -q zoxide

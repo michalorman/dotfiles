@@ -1,19 +1,3 @@
-let g:coc_global_extensions = [
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-eslint', 
-  \ 'coc-json', 
-  \ 'coc-vimlsp',
-  \ 'coc-tailwindcss',
-  \ 'coc-html',
-  \ 'coc-explorer',
-  \ 'coc-yaml',
-  \ 'coc-vetur',
-  \ 'coc-css',
-  \ 'coc-svg',
-  \ 'coc-rls',
-  \ ]
-
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.

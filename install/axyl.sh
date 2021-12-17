@@ -3,6 +3,7 @@ header "Configuring axyl! ..."
 [ $(which neofetch) ] && neofetch -L
 
 source install/axyl/pacman.sh
+source install/axyl/flatpak.sh
 source install/shared/starship.sh
 source install/shared/node.sh
 

@@ -8,3 +8,7 @@ packages=( \
 )
 
 sudo pacman -S ${packages[*]} --noconfirm
+
+source install/shared/yay.sh
+
+yay -Syu --devel
