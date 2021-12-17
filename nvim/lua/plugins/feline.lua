@@ -3,7 +3,7 @@ local M = {}
 local lsp = require "feline.providers.lsp"
 local vi_mode = require 'feline.providers.vi_mode'
 
--- Get this from the theme
+-- Get this from the theme package
 local theme_colors = {
   none = "NONE",
   -- bg_dark = "#1f2335",
@@ -54,9 +54,98 @@ local colors = {
   blue = theme_colors.blue,
   dark_blue = theme_colors.blue0,
   blue2 = theme_colors.blue7,
+  light_blue = theme_colors.blue5,
 
   yellow = theme_colors.yellow,
   red = theme_colors.red,
+  green = theme_colors.green,
+  cyan = theme_colors.cyan,
+  orange = theme_colors.orange,
+  magenta = theme_colors.magenta,
+  teal = theme_colors.teal,
+}
+
+local mode_hl = {
+  ["n"] = {
+    fg = colors.bg,
+    bg = colors.blue,
+  },
+  ["no"] = {
+    fg = colors.bg,
+    bg = colors.red,
+  },
+  ["i"] = {
+    fg = colors.bg,
+    bg = colors.light_blue,
+  },
+  ["ic"] = {
+    fg = colors.bg,
+    bg = colors.light_blue,
+  },
+  ["t"] = {
+    fg = colors.bg,
+    bg = colors.green,
+  },
+  ["v"] = {
+    fg = colors.bg,
+    bg = colors.cyan,
+  },
+  ["V"] = {
+    fg = colors.bg,
+    bg = colors.cyan,
+  },
+  [""] = {
+    fg = colors.bg,
+    bg = colors.cyan,
+  },
+  ["R"] = {
+    fg = colors.bg,
+    bg = colors.orange,
+  },
+  ["Rv"] = {
+    fg = colors.bg,
+    bg = colors.orange,
+  },
+  ["s"] = {
+    fg = colors.bg,
+    bg = colors.dark_blue,
+  },
+  ["S"] = {
+    fg = colors.bg,
+    bg = colors.dark_blue,
+  },
+  [""] = {
+    fg = colors.bg,
+    bg = colors.dark_blue,
+  },
+  ["c"] = {
+    fg = colors.bg,
+    bg = colors.magenta,
+  },
+  ["cv"] = {
+    fg = colors.bg,
+    bg = colors.magenta,
+  },
+  ["ce"] = {
+    fg = colors.bg,
+    bg = colors.magenta,
+  },
+  ["r"] = {
+    fg = colors.bg,
+    bg = colors.teal,
+  },
+  ["rm"] = {
+    fg = colors.bg,
+    bg = colors.teal,
+  },
+  ["r?"] = {
+    fg = colors.bg,
+    bg = colors.teal,
+  },
+  ["!"] = {
+    fg = colors.bg,
+    bg = colors.green,
+  },
 }
 
 local icons = {
@@ -64,7 +153,7 @@ local icons = {
     left = " ",
     right = " ",
   },
-  
+
   round = {
     left = "",
     right = "",
@@ -87,10 +176,9 @@ M.setup = function()
       return ' ' .. vi_mode.get_vim_mode()
     end,
 
-    hl = {
-      fg = colors.bg,
-      bg = colors.blue,
-    },
+    hl = function()
+      return mode_hl[vim.fn.mode()]
+    end,
   }
 
   components.active[1][2] = {
@@ -104,7 +192,7 @@ M.setup = function()
       end
       return " " .. icon .. " " .. filename .. " "
     end,
-    
+
     hl = {
       fg = colors.fg_lighter_1,
       bg = colors.bg_lighter_2,
@@ -112,13 +200,15 @@ M.setup = function()
 
     left_sep = {
       str = icons.slant.left,
-      hl = {
-        fg = colors.bg_lighter_2,
-        bg = colors.blue,
-      }
+      hl = function()
+        return {
+          fg = colors.bg_lighter_2,
+          bg = mode_hl[vim.fn.mode()].bg,
+        }
+      end,
     },
   }
-  
+
   components.active[1][3] = {
     provider = function()
       local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
@@ -129,17 +219,17 @@ M.setup = function()
       fg = colors.fg,
       bg = colors.bg,
     },
-    
+
     left_sep = {
       str = icons.slant.left,
-      
+
       hl = {
         fg = colors.bg,
         bg = colors.bg_lighter_2,
       },
     },
   }
-  
+
   components.active[1][4] = {
     provider = "diagnostic_errors",
     enabled = function()
@@ -158,7 +248,7 @@ M.setup = function()
     hl = { fg = colors.yellow },
     icon = "  ",
   }
-  
+
   components.active[2][1] = {
     provider = function()
       if next(vim.lsp.buf_get_clients()) ~= nil then
@@ -167,7 +257,7 @@ M.setup = function()
         return ""
       end
     end,
-    
+
     hl = {
       fg = colors.fg,
       bg = colors.bg,
@@ -175,18 +265,18 @@ M.setup = function()
 
     right_sep = ' '
   }
-  
+
   components.active[2][2] = {
     provider = 'git_branch',
-    
+
     hl = {
       fg = colors.fg,
       bg = colors.bg,
     },
-    
+
     icon = '  ',
   }
-  
+
   components.active[2][3] = {
     provider = ' ',
 
@@ -194,7 +284,7 @@ M.setup = function()
       fg = colors.bg,
       bg = colors.blue,
     },
-    
+
     left_sep = {
       str = ' ' .. icons.round.left,
       hl = {
@@ -203,7 +293,7 @@ M.setup = function()
       }
     },
   }
-  
+
   components.active[2][4] = {
     provider = function()
       local current_line = vim.fn.line "."
@@ -223,7 +313,7 @@ M.setup = function()
       bg = colors.bg_lighter_2,
     },
   }
-  
+
   feline.setup({
     components = components,
     colors = colors
