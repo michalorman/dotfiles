@@ -6,6 +6,8 @@ M.mappings = function()
   local map = utils.map
   
   map('n', '<C-p>', ':Telescope find_files <cr>', { silent = true })
+  map('n', '<leader>ff', ':Telescope find_files <cr>', { silent = true })
+  map('n', '<leader>fo', ':Telescope find_files <cr>', { silent = true })
   map('n', '<leader>g', ':Telescope live_grep <cr>', { silent = true })
 end
 

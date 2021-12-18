@@ -252,6 +252,14 @@ M.setup = function()
       bg = colors.bg_lighter_2,
     },
   }
+  
+  table.insert(components.inactive, {})
+
+  components.inactive[1][1] = {
+    hl = {
+      bg = colors.bg,
+    },
+  }
 
   feline.setup({
     components = components,

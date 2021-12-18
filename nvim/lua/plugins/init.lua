@@ -80,7 +80,6 @@ return packer.startup(function()
   use 'pangloss/vim-javascript'
   use 'editorconfig/editorconfig-vim'
   use 'posva/vim-vue'
-  use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
   
   use {
@@ -161,4 +160,13 @@ return packer.startup(function()
       require('plugins.dashboard-nvim').setup()
     end,
   }
+  
+  use "nathom/filetype.nvim"
+  
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+}
 end)
