@@ -219,17 +219,21 @@ M.setup = function()
   components.active[2][3] = {
     provider = ' ',
 
-    hl = {
-      fg = colors.bg,
-      bg = colors.blue,
-    },
+    hl = function() 
+      return {
+        fg = colors.bg,
+        bg = mode_hl[vim.fn.mode()].bg,
+      }
+    end,
 
     left_sep = {
       str = ' ' .. icons.round.left,
-      hl = {
-        fg = colors.blue,
-        bg = colors.bg,
-      }
+      hl = function() 
+        return {
+          fg = mode_hl[vim.fn.mode()].bg,
+          bg = colors.bg,
+        }
+      end,
     },
   }
 
