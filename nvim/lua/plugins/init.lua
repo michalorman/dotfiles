@@ -40,13 +40,25 @@ return packer.startup(function()
   use {
     'akinsho/bufferline.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
-    config = function() require('bufferline').setup() end,
+    config = function()
+      require('plugins.bufferline').setup()
+    end,
   }
 
-  use "lukas-reineke/indent-blankline.nvim"
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+
+    config = function()
+      require('plugins.indent-blankline').setup()
+    end,
+  }
 
   use {
     'famiu/feline.nvim',
+    
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+    },
     
     config = function()
       require('plugins.feline').setup()
@@ -142,5 +154,11 @@ return packer.startup(function()
     end,
   }
 
-  use 'glepnir/dashboard-nvim'
+  use {
+    'glepnir/dashboard-nvim',
+
+    config = function()
+      require('plugins.dashboard-nvim').setup()
+    end,
+  }
 end)
