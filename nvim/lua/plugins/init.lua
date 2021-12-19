@@ -4,10 +4,10 @@ local use = packer.use
 
 -- Automatically execute PackerCompile whenever plugins.lua gets updated
 vim.cmd([[
-	augroup packer_user_config
-		autocmd!
-		autocmd BufWritePost init.lua source <afile> | PackerCompile
-	augroup end
+augroup packer_user_config
+autocmd!
+autocmd BufWritePost init.lua source <afile> | PackerCompile
+augroup end
 ]])
 
 return packer.startup(function()
@@ -27,7 +27,7 @@ return packer.startup(function()
 
   use {
     'nvim-telescope/telescope.nvim',
-    
+
     requires = {
       'nvim-lua/plenary.nvim'
     },
@@ -55,11 +55,11 @@ return packer.startup(function()
 
   use {
     'famiu/feline.nvim',
-    
+
     requires = {
       'kyazdani42/nvim-web-devicons',
     },
-    
+
     config = function()
       require('plugins.feline').setup()
     end,
@@ -81,7 +81,7 @@ return packer.startup(function()
   use 'editorconfig/editorconfig-vim'
   use 'posva/vim-vue'
   use 'tpope/vim-surround'
-  
+
   use {
     'tpope/vim-fugitive',
     config = function()
@@ -101,7 +101,7 @@ return packer.startup(function()
 
   use 'karb94/neoscroll.nvim'
   use 'dag/vim-fish'
-  
+
   use {
     'unblevable/quick-scope',
     config = function()
@@ -116,6 +116,7 @@ return packer.startup(function()
 
   use {
     'neovim/nvim-lspconfig',
+    
     config = function()
       local lspconfig = require 'plugins.lspconfig'
 
@@ -123,6 +124,8 @@ return packer.startup(function()
       lspconfig.mappings()
     end,
   }
+
+  use 'williamboman/nvim-lsp-installer'
 
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -160,13 +163,15 @@ return packer.startup(function()
       require('plugins.dashboard-nvim').setup()
     end,
   }
-  
+
   use "nathom/filetype.nvim"
-  
+
   use {
     'numToStr/Comment.nvim',
     config = function()
-        require('Comment').setup()
+      require('Comment').setup()
     end
-}
+  }
+
+  use 'L3MON4D3/LuaSnip'
 end)

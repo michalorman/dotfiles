@@ -29,4 +29,5 @@ format = "[$symbol($version )]($style)"
 
 [rust]
 style = "red dimmed"
-format = "[$symbol($version )]($style)"
+symbol = ""
+format = "[$symbol ($version )]($style)"

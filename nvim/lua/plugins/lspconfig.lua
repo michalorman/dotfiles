@@ -1,29 +1,29 @@
 local M = {}
 
 M.setup = function()
-  local lspconfig = require('lspconfig')
-
   -- Add additional capabilities supported by nvim-cmp
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-  local servers = { 'rust_analyzer', 'tsserver' }
-
-  for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup {
-      capabilities = capabilities,
+  local lsp_installer = require("nvim-lsp-installer")
+  
+  lsp_installer.on_server_ready(function(server)
+    local opts = {
+      capabilities = capabilities
     }
-  end
 
+    server:setup(opts)
+  end)
+  
   -- nvim-cmp setup
   local cmp = require 'cmp'
 
   cmp.setup {
-    -- snippet = {
-    --   expand = function(args)
-    --     require('luasnip').lsp_expand(args.body)
-    --   end,
-    -- },
+    snippet = {
+      expand = function(args)
+        require('luasnip').lsp_expand(args.body)
+      end,
+    },
     mapping = {
       ['<C-p>'] = cmp.mapping.select_prev_item(),
       ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -56,7 +56,7 @@ M.setup = function()
     },
     sources = {
       { name = 'nvim_lsp' },
-      -- { name = 'luasnip' },
+      { name = 'luasnip' },
     },
   }
 end
