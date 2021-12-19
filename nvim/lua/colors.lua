@@ -41,7 +41,7 @@ return {
   bg = theme_colors.bg,
   bg_lighter_1 = '#24283b',
   bg_lighter_2 = theme_colors.bg_highlight,
-  
+
   fg = theme_colors.fg_gutter,
   fg_lighter_1 = theme_colors.fg_dark,
   fg_lighter_2 = theme_colors.fg,

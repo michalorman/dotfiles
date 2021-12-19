@@ -116,19 +116,35 @@ return packer.startup(function()
 
   use {
     'neovim/nvim-lspconfig',
-    
-    config = function()
-      local lspconfig = require 'plugins.lspconfig'
 
-      lspconfig.setup()
-      lspconfig.mappings()
+    config = function()
+      require('plugins.lspconfig').mappings()
     end,
   }
 
-  use 'williamboman/nvim-lsp-installer'
+  use {
+    'williamboman/nvim-lsp-installer',
 
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
+    config = function()
+      require('plugins.nvim-lsp-installer').setup()
+    end,
+  }
+
+  use {
+    'hrsh7th/nvim-cmp',
+
+    requires = {
+      'L3MON4D3/LuaSnip',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+    },
+
+    config = function()
+      require('plugins.nvim-cmp').setup()
+    end,
+  }
 
   use {
     'prettier/vim-prettier',
@@ -173,5 +189,4 @@ return packer.startup(function()
     end
   }
 
-  use 'L3MON4D3/LuaSnip'
 end)

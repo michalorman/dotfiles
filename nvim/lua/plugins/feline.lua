@@ -5,86 +5,26 @@ local vi_mode = require 'feline.providers.vi_mode'
 local colors = require 'colors'
 
 local mode_hl = {
-  ["n"] = {
-    fg = colors.bg,
-    bg = colors.blue,
-  },
-  ["no"] = {
-    fg = colors.bg,
-    bg = colors.red,
-  },
-  ["i"] = {
-    fg = colors.bg,
-    bg = colors.light_blue,
-  },
-  ["ic"] = {
-    fg = colors.bg,
-    bg = colors.light_blue,
-  },
-  ["t"] = {
-    fg = colors.bg,
-    bg = colors.green,
-  },
-  ["v"] = {
-    fg = colors.bg,
-    bg = colors.cyan,
-  },
-  ["V"] = {
-    fg = colors.bg,
-    bg = colors.cyan,
-  },
-  [""] = {
-    fg = colors.bg,
-    bg = colors.cyan,
-  },
-  ["R"] = {
-    fg = colors.bg,
-    bg = colors.orange,
-  },
-  ["Rv"] = {
-    fg = colors.bg,
-    bg = colors.orange,
-  },
-  ["s"] = {
-    fg = colors.bg,
-    bg = colors.dark_blue,
-  },
-  ["S"] = {
-    fg = colors.bg,
-    bg = colors.dark_blue,
-  },
-  [""] = {
-    fg = colors.bg,
-    bg = colors.dark_blue,
-  },
-  ["c"] = {
-    fg = colors.bg,
-    bg = colors.magenta,
-  },
-  ["cv"] = {
-    fg = colors.bg,
-    bg = colors.magenta,
-  },
-  ["ce"] = {
-    fg = colors.bg,
-    bg = colors.magenta,
-  },
-  ["r"] = {
-    fg = colors.bg,
-    bg = colors.teal,
-  },
-  ["rm"] = {
-    fg = colors.bg,
-    bg = colors.teal,
-  },
-  ["r?"] = {
-    fg = colors.bg,
-    bg = colors.teal,
-  },
-  ["!"] = {
-    fg = colors.bg,
-    bg = colors.green,
-  },
+  ["n"] = colors.blue,
+  ["no"] = colors.red,
+  ["i"] = colors.light_blue,
+  ["ic"] = colors.light_blue,
+  ["t"] = colors.green,
+  ["v"] = colors.cyan,
+  ["V"] = colors.cyan,
+  [""] = colors.cyan,
+  ["R"] = colors.orange,
+  ["Rv"] = colors.orange,
+  ["s"] = colors.dark_blue,
+  ["S"] = colors.dark_blue,
+  [""] = colors.dark_blue,
+  ["c"] = colors.magenta,
+  ["cv"] = colors.magenta,
+  ["ce"] = colors.magenta,
+  ["r"] = colors.teal,
+  ["rm"] = colors.teal,
+  ["r?"] = colors.teal,
+  ["!"] = colors.green,
 }
 
 local icons = {
@@ -110,13 +50,18 @@ M.setup = function()
   table.insert(components.active, {})
   table.insert(components.active, {})
 
+  -- left components
+
   components.active[1][1] = {
     provider = function()
       return ' ' .. vi_mode.get_vim_mode()
     end,
 
     hl = function()
-      return mode_hl[vim.fn.mode()]
+      return {
+        fg = colors.bg,
+        bg = mode_hl[vim.fn.mode()],
+      }
     end,
   }
 
@@ -142,7 +87,7 @@ M.setup = function()
       hl = function()
         return {
           fg = colors.bg_lighter_2,
-          bg = mode_hl[vim.fn.mode()].bg,
+          bg = mode_hl[vim.fn.mode()],
         }
       end,
     },
@@ -188,6 +133,8 @@ M.setup = function()
     icon = "  ",
   }
 
+  -- right components
+
   components.active[2][1] = {
     provider = function()
       if next(vim.lsp.buf_get_clients()) ~= nil then
@@ -219,18 +166,18 @@ M.setup = function()
   components.active[2][3] = {
     provider = ' ',
 
-    hl = function() 
+    hl = function()
       return {
         fg = colors.bg,
-        bg = mode_hl[vim.fn.mode()].bg,
+        bg = mode_hl[vim.fn.mode()],
       }
     end,
 
     left_sep = {
       str = ' ' .. icons.round.left,
-      hl = function() 
+      hl = function()
         return {
-          fg = mode_hl[vim.fn.mode()].bg,
+          fg = mode_hl[vim.fn.mode()],
           bg = colors.bg,
         }
       end,
@@ -256,7 +203,7 @@ M.setup = function()
       bg = colors.bg_lighter_2,
     },
   }
-  
+
   table.insert(components.inactive, {})
 
   components.inactive[1][1] = {

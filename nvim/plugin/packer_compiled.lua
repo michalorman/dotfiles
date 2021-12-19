@@ -92,10 +92,25 @@ _G.packer_plugins = {
     path = "/home/morman/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/morman/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
+  },
+  ["cmp-cmdline"] = {
+    loaded = true,
+    path = "/home/morman/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
+    url = "https://github.com/hrsh7th/cmp-cmdline"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/morman/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/morman/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
   },
   ["dashboard-nvim"] = {
     config = { "\27LJ\1\2D\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\27plugins.dashboard-nvim\frequire\0" },
@@ -143,6 +158,7 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
+    config = { "\27LJ\1\2>\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\21plugins.nvim-cmp\frequire\0" },
     loaded = true,
     path = "/home/morman/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
@@ -154,12 +170,13 @@ _G.packer_plugins = {
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
   ["nvim-lsp-installer"] = {
+    config = { "\27LJ\1\2H\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\31plugins.nvim-lsp-installer\frequire\0" },
     loaded = true,
     path = "/home/morman/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
     url = "https://github.com/williamboman/nvim-lsp-installer"
   },
   ["nvim-lspconfig"] = {
-    config = { "\27LJ\1\2P\0\0\2\0\4\0\b4\0\0\0%\1\1\0>\0\2\0027\1\2\0>\1\1\0017\1\3\0>\1\1\1G\0\1\0\rmappings\nsetup\22plugins.lspconfig\frequire\0" },
+    config = { "\27LJ\1\2B\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\rmappings\22plugins.lspconfig\frequire\0" },
     loaded = true,
     path = "/home/morman/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
@@ -248,6 +265,10 @@ time([[Defining packer_plugins]], false)
 time([[Config for quick-scope]], true)
 try_loadstring("\27LJ\1\2@\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\23plugins.quickscope\frequire\0", "config", "quick-scope")
 time([[Config for quick-scope]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+try_loadstring("\27LJ\1\2>\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\21plugins.nvim-cmp\frequire\0", "config", "nvim-cmp")
+time([[Config for nvim-cmp]], false)
 -- Config for: indent-blankline.nvim
 time([[Config for indent-blankline.nvim]], true)
 try_loadstring("\27LJ\1\2F\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\29plugins.indent-blankline\frequire\0", "config", "indent-blankline.nvim")
@@ -268,22 +289,26 @@ time([[Config for nvim-autopairs]], false)
 time([[Config for telescope.nvim]], true)
 try_loadstring("\27LJ\1\2B\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\rmappings\22plugins.telescope\frequire\0", "config", "telescope.nvim")
 time([[Config for telescope.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+try_loadstring("\27LJ\1\0027\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\14colorizer\frequire\0", "config", "nvim-colorizer.lua")
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: feline.nvim
+time([[Config for feline.nvim]], true)
+try_loadstring("\27LJ\1\2<\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\19plugins.feline\frequire\0", "config", "feline.nvim")
+time([[Config for feline.nvim]], false)
+-- Config for: better-escape.nvim
+time([[Config for better-escape.nvim]], true)
+try_loadstring("\27LJ\1\2;\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\18better_escape\frequire\0", "config", "better-escape.nvim")
+time([[Config for better-escape.nvim]], false)
 -- Config for: dashboard-nvim
 time([[Config for dashboard-nvim]], true)
 try_loadstring("\27LJ\1\2D\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\27plugins.dashboard-nvim\frequire\0", "config", "dashboard-nvim")
 time([[Config for dashboard-nvim]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-try_loadstring("\27LJ\1\0025\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
-time([[Config for Comment.nvim]], false)
 -- Config for: tokyonight.nvim
 time([[Config for tokyonight.nvim]], true)
 try_loadstring("\27LJ\1\2A\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\vconfig\23plugins.tokyonight\frequire\0", "config", "tokyonight.nvim")
 time([[Config for tokyonight.nvim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-try_loadstring("\27LJ\1\2P\0\0\2\0\4\0\b4\0\0\0%\1\1\0>\0\2\0027\1\2\0>\1\1\0017\1\3\0>\1\1\1G\0\1\0\rmappings\nsetup\22plugins.lspconfig\frequire\0", "config", "nvim-lspconfig")
-time([[Config for nvim-lspconfig]], false)
 -- Config for: vim-fugitive
 time([[Config for vim-fugitive]], true)
 try_loadstring("\27LJ\1\2A\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\rmappings\21plugins.fugitive\frequire\0", "config", "vim-fugitive")
@@ -292,26 +317,26 @@ time([[Config for vim-fugitive]], false)
 time([[Config for gitsigns.nvim]], true)
 try_loadstring("\27LJ\1\2I\0\0\2\0\4\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0>\0\2\1G\0\1\0\1\0\1\15signcolumn\1\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
 time([[Config for gitsigns.nvim]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-try_loadstring("\27LJ\1\0027\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\14colorizer\frequire\0", "config", "nvim-colorizer.lua")
-time([[Config for nvim-colorizer.lua]], false)
 -- Config for: bufferline.nvim
 time([[Config for bufferline.nvim]], true)
 try_loadstring("\27LJ\1\2@\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\23plugins.bufferline\frequire\0", "config", "bufferline.nvim")
 time([[Config for bufferline.nvim]], false)
--- Config for: feline.nvim
-time([[Config for feline.nvim]], true)
-try_loadstring("\27LJ\1\2<\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\19plugins.feline\frequire\0", "config", "feline.nvim")
-time([[Config for feline.nvim]], false)
+-- Config for: nvim-lsp-installer
+time([[Config for nvim-lsp-installer]], true)
+try_loadstring("\27LJ\1\2H\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\31plugins.nvim-lsp-installer\frequire\0", "config", "nvim-lsp-installer")
+time([[Config for nvim-lsp-installer]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+try_loadstring("\27LJ\1\0025\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+time([[Config for Comment.nvim]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+try_loadstring("\27LJ\1\2B\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\rmappings\22plugins.lspconfig\frequire\0", "config", "nvim-lspconfig")
+time([[Config for nvim-lspconfig]], false)
 -- Config for: nvim-tree.lua
 time([[Config for nvim-tree.lua]], true)
 try_loadstring("\27LJ\1\2P\0\0\2\0\4\0\b4\0\0\0%\1\1\0>\0\2\0027\1\2\0>\1\1\0017\1\3\0>\1\1\1G\0\1\0\rmappings\nsetup\22plugins.nvim-tree\frequire\0", "config", "nvim-tree.lua")
 time([[Config for nvim-tree.lua]], false)
--- Config for: better-escape.nvim
-time([[Config for better-escape.nvim]], true)
-try_loadstring("\27LJ\1\2;\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\18better_escape\frequire\0", "config", "better-escape.nvim")
-time([[Config for better-escape.nvim]], false)
 if should_profile then save_profiles() end
 
 end)
