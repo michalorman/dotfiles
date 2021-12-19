@@ -53,12 +53,6 @@ M.setup = function()
       { name = 'cmdline' }
     }
   })
-
-  cmp.setup.cmdline('/', {
-    sources = {
-      { name = 'buffer' }
-    }
-  })
 end
 
 return M

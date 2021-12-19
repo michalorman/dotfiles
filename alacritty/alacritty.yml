@@ -30,101 +30,39 @@ font:
     x: 0
     y: 0
 
-# Colors (Oceanic Next)
-# colors:
-#   # Default colors
-#   primary:
-#     background: '#1b2b34'
-#     foreground: '#d8dee9'
+# https://github.com/folke/tokyonight.nvim/blob/main/extras/alacritty_tokyonight_night.yml
+# TokyoNight Alacritty Colors
+colors:
+  # Default colors
+  primary:
+    background: '0x1a1b26'
+    foreground: '0xc0caf5'
 
-#   # Colors the cursor will use if `custom_cursor_colors` is true
-#   cursor:
-#     text: '#1b2b34'
-#     cursor: '#ffffff'
+  # Normal colors
+  normal:
+    black:   '0x15161E'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan:    '0x7dcfff'
+    white:   '0xa9b1d6'
 
-#   # Normal colors
-#   normal:
-#     black:   '#343d46'
-#     red:     '#EC5f67'
-#     green:   '#99C794'
-#     yellow:  '#FAC863'
-#     blue:    '#6699cc'
-#     magenta: '#c594c5'
-#     cyan:    '#5fb3b3'
-#     white:   '#d8dee9'
+  # Bright colors
+  bright:
+    black:   '0x414868'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan:    '0x7dcfff'
+    white:   '0xc0caf5'
 
-#   # Bright colors
-#   bright:
-#     black:   '#343d46'
-#     red:     '#EC5f67'
-#     green:   '#99C794'
-#     yellow:  '#FAC863'
-#     blue:    '#6699cc'
-#     magenta: '#c594c5'
-#     cyan:    '#5fb3b3'
-#     white:   '#d8dee9'
-
-schemes:
-  # Tokyo Night theme, based on both:
-  #   https://github.com/ghifarit53/tokyonight-vim
-  #   https://github.com/enkia/tokyo-night-vscode-theme
-  tokyo-night: &tokyo-night
-    # Default colors
-    primary:
-      background: '0x1a1b26'
-      foreground: '0xa9b1d6'
-
-    # Normal colors
-    normal:
-      black:   '0x32344a'
-      red:     '0xf7768e'
-      green:   '0x9ece6a'
-      yellow:  '0xe0af68'
-      blue:    '0x7aa2f7'
-      magenta: '0xad8ee6'
-      cyan:    '0x449dab'
-      white:   '0x787c99'
-
-    # Bright colors
-    bright:
-      black:   '0x444b6a'
-      red:     '0xff7a93'
-      green:   '0xb9f27c'
-      yellow:  '0xff9e64'
-      blue:    '0x7da6ff'
-      magenta: '0xbb9af7'
-      cyan:    '0x0db9d7'
-      white:   '0xacb0d0'
-
-  tokyo-night-storm: &tokyo-night-storm
-    # Default colors
-    primary:
-      background: '0x24283b'
-      foreground: '0xa9b1d6'
-
-    # Normal colors
-    normal:
-      black:   '0x32344a'
-      red:     '0xf7768e'
-      green:   '0x9ece6a'
-      yellow:  '0xe0af68'
-      blue:    '0x7aa2f7'
-      magenta: '0xad8ee6'
-      cyan:    '0x449dab'
-      white:   '0x9699a8'
-
-    # Bright colors
-    bright:
-      black:   '0x444b6a'
-      red:     '0xff7a93'
-      green:   '0xb9f27c'
-      yellow:  '0xff9e64'
-      blue:    '0x7da6ff'
-      magenta: '0xbb9af7'
-      cyan:    '0x0db9d7'
-      white:   '0xacb0d0'
-
-colors: *tokyo-night
+  indexed_colors:
+    - { index: 16, color: '0xff9e64' }
+    - { index: 17, color: '0xdb4b4b' }
 
 # background_opacity: 0.95
 

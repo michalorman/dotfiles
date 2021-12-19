@@ -78,15 +78,15 @@ M.setup = function()
     end,
 
     hl = {
-      fg = colors.fg_lighter_1,
-      bg = colors.bg_lighter_2,
+      fg = colors.fg_lighter,
+      bg = colors.bg_highlight,
     },
 
     left_sep = {
       str = icons.slant.left,
       hl = function()
         return {
-          fg = colors.bg_lighter_2,
+          fg = colors.bg_highlight,
           bg = mode_hl[vim.fn.mode()],
         }
       end,
@@ -109,7 +109,7 @@ M.setup = function()
 
       hl = {
         fg = colors.bg,
-        bg = colors.bg_lighter_2,
+        bg = colors.bg_highlight,
       },
     },
   }
@@ -199,8 +199,8 @@ M.setup = function()
     end,
 
     hl = {
-      fg = colors.fg_lighter_1,
-      bg = colors.bg_lighter_2,
+      fg = colors.fg_lighter,
+      bg = colors.bg_highlight,
     },
   }
 
