@@ -2,8 +2,6 @@ local utils = require 'utils'
 
 local map = utils.map
 
--- map('n', '<leader>s', ':luafile $MYVIMRC<cr>')
-
 map('n', '<Leader>w', '<cmd>:w!<CR>')
 
 map('n', '<Tab>', ':bnext<CR>', { silent = true})
