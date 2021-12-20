@@ -5,8 +5,8 @@ local use = packer.use
 -- Automatically execute PackerCompile whenever plugins.lua gets updated
 vim.cmd([[
 augroup packer_user_config
-autocmd!
-autocmd BufWritePost init.lua source <afile> | PackerCompile
+  autocmd!
+  autocmd BufWritePost init.lua source <afile> | PackerCompile
 augroup end
 ]])
 
@@ -16,7 +16,7 @@ return packer.startup(function()
   use {
     'folke/tokyonight.nvim',
     config = function()
-      require('plugins.tokyonight').config()
+      require 'plugins.config.tokyonight'
     end,
   }
 
@@ -33,7 +33,7 @@ return packer.startup(function()
     },
 
     config = function()
-      require('plugins.telescope').mappings()
+      require 'plugins.config.telescope'
     end,
   }
 
@@ -41,7 +41,7 @@ return packer.startup(function()
     'akinsho/bufferline.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
-      require('plugins.bufferline').setup()
+      require 'plugins.config.bufferline'
     end,
   }
 
@@ -49,7 +49,7 @@ return packer.startup(function()
     "lukas-reineke/indent-blankline.nvim",
 
     config = function()
-      require('plugins.indent-blankline').setup()
+      require 'plugins.config.indent-blankline'
     end,
   }
 
@@ -61,7 +61,7 @@ return packer.startup(function()
     },
 
     config = function()
-      require('plugins.feline').setup()
+      require 'plugins.config.feline'
     end,
   }
 
@@ -85,7 +85,7 @@ return packer.startup(function()
   use {
     'tpope/vim-fugitive',
     config = function()
-      require('plugins.fugitive').mappings()
+      require 'plugins.config.fugitive'
     end,
   }
 
@@ -104,8 +104,9 @@ return packer.startup(function()
 
   use {
     'unblevable/quick-scope',
-    config = function()
-      require('plugins.quickscope').setup()
+
+    setup = function()
+      require 'plugins.config.quickscope'
     end,
   }
 
@@ -118,7 +119,7 @@ return packer.startup(function()
     'neovim/nvim-lspconfig',
 
     config = function()
-      require('plugins.lspconfig').mappings()
+      require 'plugins.config.lspconfig'
     end,
   }
 
@@ -126,7 +127,7 @@ return packer.startup(function()
     'williamboman/nvim-lsp-installer',
 
     config = function()
-      require('plugins.nvim-lsp-installer').setup()
+      require 'plugins.config.nvim-lsp-installer'
     end,
   }
 
@@ -142,7 +143,7 @@ return packer.startup(function()
     },
 
     config = function()
-      require('plugins.nvim-cmp').setup()
+      require 'plugins.config.nvim-cmp'
     end,
   }
 
@@ -150,10 +151,7 @@ return packer.startup(function()
     'prettier/vim-prettier',
 
     config = function()
-      local prettier = require 'plugins.prettier'
-
-      prettier.setup()
-      prettier.mappings()
+      require 'plugins.config.prettier'
     end,
   }
 
@@ -165,10 +163,7 @@ return packer.startup(function()
     },
 
     config = function()
-      local nvim_tree = require 'plugins.nvim-tree'
-
-      nvim_tree.setup()
-      nvim_tree.mappings()
+      require 'plugins.config.nvim-tree'
     end,
   }
 
@@ -176,7 +171,7 @@ return packer.startup(function()
     'glepnir/dashboard-nvim',
 
     config = function()
-      require('plugins.dashboard-nvim').setup()
+      require 'plugins.config.dashboard-nvim'
     end,
   }
 
