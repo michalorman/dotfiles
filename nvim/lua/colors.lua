@@ -4,7 +4,7 @@ local theme_colors = require("tokyonight.colors").setup({
 
 return {
   bg_dark = theme_colors.bg_dark,
-  bg = theme_colors.bg,
+  bg = "#1a1b26",
   bg_highlight = theme_colors.bg_highlight,
 
   fg = theme_colors.fg_gutter,

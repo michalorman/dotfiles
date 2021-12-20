@@ -31,3 +31,6 @@ format = "[$symbol($version )]($style)"
 style = "red dimmed"
 symbol = ""
 format = "[$symbol ($version )]($style)"
+
+[lua]
+symbol = " "
