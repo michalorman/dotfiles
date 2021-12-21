@@ -46,9 +46,6 @@ return packer.startup(function()
 
   use {
     'folke/tokyonight.nvim',
-    -- config = function()
-    --   require 'plugins.config.tokyonight'
-    -- end,
   }
 
   use {
@@ -212,6 +209,14 @@ return packer.startup(function()
     config = function()
       require('Comment').setup()
     end
+  }
+
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config = function()
+      require 'plugins.config.treesitter'
+    end,
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
