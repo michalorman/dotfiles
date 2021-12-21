@@ -46,9 +46,9 @@ return packer.startup(function()
 
   use {
     'folke/tokyonight.nvim',
-    config = function()
-      require 'plugins.config.tokyonight'
-    end,
+    -- config = function()
+    --   require 'plugins.config.tokyonight'
+    -- end,
   }
 
   use {
@@ -130,7 +130,6 @@ return packer.startup(function()
     config = function() require('nvim-autopairs').setup{} end,
   }
 
-  use 'karb94/neoscroll.nvim'
   use 'dag/vim-fish'
 
   use {
