@@ -5,12 +5,11 @@ if not present then
 end
 
 tsconfig.setup({
-  ensure_installed = {
-    'lua', 'vim', 'javascript', 'rust', 'ruby', 'typescript', 'css', 'html', 'scss', 'vue'
-  },
+  ensure_installed = "maintained",
 
   highlight = {
     enable = true,
-    use_languagetree = true
+    use_languagetree = true,
+    additional_vim_regex_highlighting = true,
   }
 })

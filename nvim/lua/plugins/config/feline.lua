@@ -119,19 +119,28 @@ components.active[1][3] = {
 components.active[1][4] = {
   provider = "diagnostic_errors",
   enabled = function()
-    return lsp.diagnostics_exist "Error"
+    return lsp.diagnostics_exist(vim.diagnostic.severity.ERROR)
   end,
 
-  hl = { fg = colors.red },
-  icon = "  ",
+  hl = {
+    fg = colors.red,
+    bg = colors.bg
+  },
+
+  icon = " ﮻ ",
 }
 
 components.active[1][5] = {
   provider = "diagnostic_warnings",
   enabled = function()
-    return lsp.diagnostics_exist "Warning"
+    return lsp.diagnostics_exist(vim.diagnostic.severity.WARN)
   end,
-  hl = { fg = colors.yellow },
+
+  hl = {
+    fg = colors.yellow,
+    bg = colors.bg
+  },
+
   icon = "  ",
 }
 

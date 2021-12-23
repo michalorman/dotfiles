@@ -4,7 +4,7 @@ sudo pacman -Syu --noconfirm
 
 packages=( \
   fzf the_silver_searcher ripgrep aws-cli fd zoxide bpytop \
-  flatpak rust-analyzer
+  flatpak rust-analyzer playerctl
 )
 
 sudo pacman -S ${packages[*]} --noconfirm

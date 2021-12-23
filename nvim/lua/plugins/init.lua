@@ -164,6 +164,7 @@ return packer.startup(function()
     requires = {
       'L3MON4D3/LuaSnip',
       'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
@@ -216,6 +217,16 @@ return packer.startup(function()
     run = ':TSUpdate',
     config = function()
       require 'plugins.config.treesitter'
+    end,
+  }
+
+  use {
+    "folke/zen-mode.nvim",
+    -- requires = {
+    --   "folke/twilight.nvim",
+    -- },
+    config = function()
+      require 'plugins.config.zen-mode'
     end,
   }
 
