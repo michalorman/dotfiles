@@ -42,6 +42,10 @@ super + shift + {f,w,r,g,c,d,s,v,i}
 XF86Audio{RaiseVolume,LowerVolume,Mute}
     volume{ --up, --down, --toggle}
 
+# Playback control
+XF86Audio{Play,Next,Prev}
+    playerctl{ play-pause, next, previous}
+
 # Brightness controls
 XF86MonBrightness{Up,Down}
     brightness{ --up, --down}

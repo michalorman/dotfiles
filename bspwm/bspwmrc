@@ -4,12 +4,12 @@
 bash $HOME/.config/bspwm/.fehbg
 
 pgrep -x sxhkd > /dev/null || sxhkd &
-$HOME/.config/bspwm/polybar/launch.sh
+$HOME/.config/polybar/launch.sh
 
 workspaces() {
 	name=1
 	for monitor in `bspc query -M`; do
-		bspc monitor ${monitor} -n "$name" -d '' '' '' '' '' '' '漣'
+		bspc monitor ${monitor} -n "$name" -d '' '' '' '' '' '' '漣' ''
 		let name++
 	done
 }
@@ -40,7 +40,7 @@ for i in ${terminal[@]}; do
     bspc rule -a $i desktop='^1' follow=on focus=on; done
 
 # workspace 2 (Internet Browser)
-declare -a web=(firefox discord)
+declare -a web=(firefox discord google-chrome)
 for i in ${web[@]}; do
     bspc rule -a $i desktop='^2' follow=on focus=on; done
 
@@ -50,21 +50,30 @@ for i in ${filem[@]}; do
     bspc rule -a $i desktop='^3' follow=on focus=on; done
 
 # workspace 4 (Text Editor)
-declare -a office=(Code Geany)
+declare -a office=(Code Geany Joplin)
 for i in ${office[@]}; do
     bspc rule -a $i desktop='^4' follow=on focus=on; done
 
-# workspace 5 (Media)
-declare -a media=(vlc obs mpv mplayer lxmusic Gimp Gimp-2.10 \
-"VirtualBox Manager")
-for i in ${media[@]}; do
+# workspace 5 (Communication)
+declare -a communicator=(Slack)
+for i in ${communicator[@]}; do
     bspc rule -a $i desktop='^5' follow=on focus=on; done
+
+# workspace 6 (Media)
+declare -a media=(spotify)
+for i in ${media[@]}; do
+    bspc rule -a $i desktop='^6' follow=on focus=on; done
 
 # workspace 7 (Settings)
 declare -a settings=(GParted Lxappearance Lxtask Lxrandr Arandr \
 Pavucontrol Xfce4-settings-manager)
 for i in ${settings[@]}; do
     bspc rule -a $i desktop='^7' follow=on focus=on; done
+
+# workspace 8 (Virtualization)
+declare -a manager=("VirtualBox Manager")
+for i in ${manager[@]}; do
+    bspc rule -a $i desktop='^8' follow=on focus=on; done
 
 # floating windows
 declare -a floats=(Alafloat Lxappearance Arandr \
@@ -75,11 +84,7 @@ for i in ${floats[@]}; do
 ## Autostart
 
 # Kill if already running
-killall -9 picom sxhkd dunst xfce4-power-manager ksuperkey eww
-
-# Launch Conkeww
-#sed -i "s/colors\/color-.*/colors\/color-tokyo.yuck\")/g" $HOME/.config/conkeww/eww.yuck
-#eww --config $HOME/.config/conkeww/ open conkeww-main
+killall -9 picom sxhkd dunst xfce4-power-manager ksuperkey eww playerctld
 
 # Launch notification daemon
 dunst -config $HOME/.config/bspwm/dunstrc &
@@ -103,7 +108,7 @@ xfce4-power-manager &
 udiskie &
 
 # start playerctld
-# playerctld daemon
+playerctld daemon
 
 # start compositor
 while pgrep -u $UID -x picom >/dev/null; do sleep 1; done

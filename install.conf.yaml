@@ -14,6 +14,12 @@
     ~/.config/starship.toml: starship/starship.toml
     ~/.config/fish/config.fish: fish/config.fish
     ~/.config/sxhkd/sxhkdrc: sxhkd/sxhkdrc
+    ~/.config/bspwm/bspwmrc: bspwm/bspwmrc
+
+    ~/.config/polybar/config.ini: polybar/config.ini
+    ~/.config/polybar/colors.ini: polybar/colors.ini
+    ~/.config/polybar/modules.ini: polybar/modules.ini
+    ~/.config/polybar/launch.sh: polybar/launch.sh
 
       # - shell:
       #- [chsh -s $(which fish), Making fish the default shell]
