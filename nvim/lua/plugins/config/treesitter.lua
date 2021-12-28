@@ -9,7 +9,7 @@ tsconfig.setup({
 
   highlight = {
     enable = true,
-    use_languagetree = true,
-    additional_vim_regex_highlighting = true,
+    -- use_languagetree = true,
+    -- additional_vim_regex_highlighting = true,
   }
 })

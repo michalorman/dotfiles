@@ -6,16 +6,9 @@ bash $HOME/.config/bspwm/.fehbg
 pgrep -x sxhkd > /dev/null || sxhkd &
 $HOME/.config/polybar/launch.sh
 
-workspaces() {
-	name=1
-	for monitor in `bspc query -M`; do
-		bspc monitor ${monitor} -n "$name" -d '' '' '' '' '' '' '漣' ''
-		let name++
-	done
-}
-workspaces
+bspc monitor -d '' '' '' '' '' '' '' '' '' '' '漣' ''
 
-bspc config border_width         1
+bspc config border_width         2
 bspc config window_gap           5
 bspc config split_ratio          0.50
 
@@ -35,51 +28,53 @@ bspc config focus_follows_pointer true
 xsetroot -cursor_name left_ptr
 
 # workspace 1 (Terminals)
-declare -a terminal=(Alacritty Xfce4-terminal)
-for i in ${terminal[@]}; do
-    bspc rule -a $i desktop='^1' follow=on focus=on; done
+# declare -a terminal=(Alacritty Xfce4-terminal)
+# for i in ${terminal[@]}; do
+#     bspc rule -a $i desktop='^1' follow=on focus=on; done
 
 # workspace 2 (Internet Browser)
-declare -a web=(firefox discord google-chrome)
+declare -a web=(firefox discord)
 for i in ${web[@]}; do
-    bspc rule -a $i desktop='^2' follow=on focus=on; done
+    bspc rule -a $i desktop='^6' follow=on focus=on; done
 
 # workspace 3 (Files)
 declare -a filem=(Thunar Pcmanfm qBittorrent)
 for i in ${filem[@]}; do
-    bspc rule -a $i desktop='^3' follow=on focus=on; done
+    bspc rule -a $i desktop='^7' follow=on focus=on; done
 
 # workspace 4 (Text Editor)
 declare -a office=(Code Geany Joplin)
 for i in ${office[@]}; do
-    bspc rule -a $i desktop='^4' follow=on focus=on; done
+    bspc rule -a $i desktop='^8' follow=on focus=on; done
 
 # workspace 5 (Communication)
 declare -a communicator=(Slack)
 for i in ${communicator[@]}; do
-    bspc rule -a $i desktop='^5' follow=on focus=on; done
+    bspc rule -a $i desktop='^9' follow=on focus=on; done
 
 # workspace 6 (Media)
 declare -a media=(spotify)
 for i in ${media[@]}; do
-    bspc rule -a $i desktop='^6' follow=on focus=on; done
+    bspc rule -a $i desktop='^0' follow=on focus=on; done
 
 # workspace 7 (Settings)
 declare -a settings=(GParted Lxappearance Lxtask Lxrandr Arandr \
 Pavucontrol Xfce4-settings-manager)
 for i in ${settings[@]}; do
-    bspc rule -a $i desktop='^7' follow=on focus=on; done
+    bspc rule -a $i desktop='^11' follow=on focus=on; done
 
 # workspace 8 (Virtualization)
 declare -a manager=("VirtualBox Manager")
 for i in ${manager[@]}; do
-    bspc rule -a $i desktop='^8' follow=on focus=on; done
+    bspc rule -a $i desktop='^12' follow=on focus=on; done
 
 # floating windows
 declare -a floats=(Alafloat Lxappearance Arandr \
 Viewnior Pcmanfm feh Nm-connection-editor Matplotlib Yad)
 for i in ${floats[@]}; do
   bspc rule -a $i state=floating follow=on focus=on; done
+
+bspc rule -a 1Password state=floating center=on follow=on focus=on
 
 ## Autostart
 
