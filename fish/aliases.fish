@@ -20,6 +20,8 @@ alias tmux='tmux -2'
 alias ts='tmux new -s (basename $PWD)'
 alias tls='tmux ls'
 
+alias nv='nvim'
+
 if type -q exa
   alias ls='exa -al --color=always --group-directories-first --icons' # preferred listing
   alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs

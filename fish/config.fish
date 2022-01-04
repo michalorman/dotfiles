@@ -26,3 +26,7 @@ end
 if test -d "$HOME/.local/bin"
   set -gx PATH "$HOME/.local/bin" $PATH
 end
+
+if test -d "$HOME/.local/scripts"
+  set -gx PATH "$HOME/.local/scripts" $PATH
+end

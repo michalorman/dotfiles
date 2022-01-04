@@ -32,11 +32,11 @@ ctrl + alt + l
 
 # custom dmenu scripts
 alt + {e,l}
-    {edit-configs, quick-links}
+    {edit-configs, links-menu}
 
 # Launch Applications
-super + shift + {f,w,r,g,c,d,s,v,i}
-    {thunar,firefox,terminal -e ranger,geany,code,discord,spotify,virtualbox,insomnia}
+super + shift + {f,w,r,g,c,d,s,v,i,j,m}
+    {thunar,firefox,terminal -e ranger,geany,code,discord,spotify,virtualbox,rest.insomnia.Insomnia,Joplin,mongodb-compass}
 
 # Volume controls
 XF86Audio{RaiseVolume,LowerVolume,Mute}
@@ -73,7 +73,7 @@ ctrl + shift + {q,r}
     bspc {quit,wm -r}
 
 # close and kill
-super + q
+super + c
     bspc node -c
 
 # alternate between the tiled and monocle layout

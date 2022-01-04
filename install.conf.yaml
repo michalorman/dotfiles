@@ -21,5 +21,7 @@
     ~/.config/polybar/modules.ini: polybar/modules.ini
     ~/.config/polybar/launch.sh: polybar/launch.sh
 
+    ~/.local/scripts: scripts
+
       # - shell:
       #- [chsh -s $(which fish), Making fish the default shell]

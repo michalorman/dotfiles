@@ -44,9 +44,9 @@ packer.init {
 return packer.startup(function()
   use 'wbthomason/packer.nvim'
 
-  use {
-    'folke/tokyonight.nvim',
-  }
+  use 'folke/tokyonight.nvim'
+
+  -- use 'EdenEast/nightfox.nvim'
 
   use {
     "max397574/better-escape.nvim",
