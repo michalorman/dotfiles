@@ -24,7 +24,7 @@ alt + F1
 
 # Launch Menus
 super + {x,n,d,s}
-    {powermenu,def-nmdmenu,def-dmenu,def-ssdmenu}
+    {power-menu,def-nmdmenu,def-dmenu,def-ssdmenu}
 
 # Lock Screen
 ctrl + alt + l
@@ -85,8 +85,8 @@ super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
 # swap the current node and the biggest window
-super + g
-	bspc node -s biggest.window
+#super + g
+	#bspc node -s biggest.window
 
 #
 # state/flags

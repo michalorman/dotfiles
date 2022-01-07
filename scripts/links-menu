@@ -1,14 +1,14 @@
 #!/bin/env bash
 
 source colors
-source font
+source dmenu-font
 
 declare -A links=(
 ["npm"]="npmjs.com"
 ["Rust Book"]="doc.rust-lang.org/stable/book"
 )
 
-choice=$(printf '%s\n' "${!links[@]}" | sort -u | dmenu -c -i -l 10 -nb "$bg" -nf "$fg" -sb "$altbg" -sf "$fg" -fn "$font" -p 'Links:')
+choice=$(printf '%s\n' "${!links[@]}" | sort -u | dmenu -c -i -l 10 -nb "$bg" -nf "$fg" -sb "$altblue" -sf "$bg" -fn "$font")
 
 # opens the link using default browser.. make sure you installed one :)
 if [ "$choice" ]; then
