@@ -1,25 +1,3 @@
 #!/bin/env bash
 
-source colors
-source dmenu-font
-
-
-declare -A options=(
-[" Lock"]="lock"
-["鈴 Sleep"]="sleep"
-[" Hibernate"]="hibernate"
-["ﰇ Restart"]="restart"
-[" Shutdown"]="shutdown"
-[" Logout"]="logout"
-)
-
-choice=$(printf '%s\n' "${!options[@]}" |  dmenu -c -i -l 10 -nb "$bg" -nf "$fg" -sb "$altblue" -sf "$bg" -fn "$font")
-
-case ${options[$choice]} in
-  lock) lock                        ;;
-  sleep) systemctl suspend && lock  ;;
-  hibernate) systemctl hibernate    ;;
-  restart) reboot                   ;;
-  shutdown) poweroff                ;;
-  logout) pkill -KILL -u "$USER" &  ;;
-esac
+~/.config/rofi/powermenu.sh

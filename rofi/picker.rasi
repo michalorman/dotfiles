@@ -1,0 +1,61 @@
+configuration {
+	font:                 "JetBrains Mono Nerd Font 14";
+  show-icons:           false;
+  drun-display-format:  "{name}";
+}
+
+@import "colors.rasi"
+
+window {
+  transparency:       "real";
+  background-color:   @bg;
+  text-color:         @fg;
+	border:							3px;
+	border-color:       @altblue;
+	width:              500px;
+  padding:            10px;
+}
+
+listview {
+  background-color:               @bg;
+  padding:                        10px 10px 10px 10px;
+  columns:                        1;
+  spacing:                        4px;
+  cycle:                          true;
+  dynamic:                        true;
+  layout:                         vertical;
+}
+
+mainbox {
+  background-color:               @bg;
+	border:							            0px;
+  border-radius:                  0px;
+  children:                       [ listview ];
+  spacing:                       	0px;
+  padding:                        0px;
+}
+
+element {
+  background-color:               @bg;
+  text-color:                     @fg;
+  orientation:                    horizontal;
+  border-radius:                  0px;
+	padding: 						            8px 8px 8px 20px;
+}
+
+element-text {
+  expand:                         true;
+  horizontal-align:               0;
+  vertical-align:                 0.5;
+  margin:                         0px 2.5px 0px 2.5px;
+  background-color:               @transparent;
+  text-color:                     @fg;
+}
+
+element selected {
+  background-color:               @altbg;
+  text-color:                     @fg;
+	//border:							            0 1px 0 1px;
+  //border-radius:                  5px;
+  //border-color:                  	@blue;
+}

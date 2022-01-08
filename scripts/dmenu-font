@@ -1,6 +1,0 @@
-#!/bin/env bash
-
-# dmenu font used by Axyl
-# font="Source Code Pro Medium:size=12"
-
-font="JetBrains Mono Nerd Font:size=14"

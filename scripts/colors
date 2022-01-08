@@ -1,10 +1,9 @@
 #!/bin/env bash
 
-# dmenu colors, tokyonight
+# tokyonighth
 bg="#1a1b26"
 altbg="#444b6a"
 fg="#a9b1d6"
-
 black="#32344a"
 red="#f7768e"
 green="#9ece6a"
