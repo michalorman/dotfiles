@@ -3,8 +3,8 @@ configuration {
   show-icons:           false;
 	icon-theme: 					"Papirus";
   display-drun: 				"הּ";
-  display-run:  				"הּ";
-  drun-display-format:  "{name}";
+  display-run:  				" ";
+  drun-display-format:  "{name} [<span alpha="50%" weight='light' size='x-small'><i>({generic})</i></span>]";
   //disable-history:      false;
 	//sidebar-mode:         false;
 }
@@ -18,7 +18,7 @@ window {
 	border:							3px;
 	border-color:       @altblue;
   //border-radius:      8px;
-	width:              500px;
+	width:              700px;
   padding:            10px;
   //location:           center;
   //x-offset:           0;

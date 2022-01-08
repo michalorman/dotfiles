@@ -18,16 +18,12 @@ super + shift + Return
 super + shift + t
     terminal -m
 
-# j4 dmenu
-#alt + F1
-    #j4-dmenu
-
 alt + F1
-    run-menu
+    drun-menu
 
 # Launch Menus
 super + {x,n,d,s}
-    {power-menu,def-nmdmenu,def-dmenu,sshot-menu}
+    {power-menu,def-nmdmenu,run-menu,sshot-menu}
 
 # Lock Screen
 ctrl + alt + l
