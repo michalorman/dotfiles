@@ -35,7 +35,7 @@ alt + {e,l}
 
 # Launch Applications
 super + shift + {f,w,r,g,c,d,s,v,i,j,m}
-    {thunar,firefox,terminal -e ranger,geany,code,discord,spotify,virtualbox,rest.insomnia.Insomnia,Joplin,mongodb-compass}
+    {thunar,firefox,terminal -e ranger,geany,code,discord,spotify,virtualbox,rest.insomnia.Insomnia,net.cozic.joplin_desktop,mongodb-compass}
 
 # Volume controls
 XF86Audio{RaiseVolume,LowerVolume,Mute}

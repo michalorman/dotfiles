@@ -14,7 +14,7 @@ alias gcm='git checkout master'
 alias gp='git push'
 alias gl='git pull'
 
-alias ss='ruby -run -e httpd -- -p 5000 .'
+# alias ss='ruby -run -e httpd -- -p 5000 .'
 
 alias tmux='tmux -2'
 alias ts='tmux new -s (basename $PWD)'
