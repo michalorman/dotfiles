@@ -1,0 +1,9 @@
+* {
+  bg: #1a1b26;
+  selection: #444b6a26;
+  fg: #a9b1d6;
+  accent: #7da6ff;
+  transparent: #00000000;
+  prompt: #32344a;
+  placeholder: #444b6a;
+}

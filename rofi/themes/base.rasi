@@ -4,34 +4,30 @@ configuration {
   drun-display-format:  "{name}";
 }
 
-@import "colors.rasi"
+@import "colors/tokyonight.rasi"
 
 window {
   transparency:       "real";
   background-color:   @bg;
   text-color:         @fg;
 	border:							3px;
-	border-color:       @altblue;
-  //border-radius:      8px;
+	border-color:       @accent;
 	width:              500px;
   padding:            10px;
-  //location:           center;
-  //x-offset:           0;
-  //y-offset:           0;
 }
 
 prompt {
   enabled: 						true;
 	padding: 						14px 0px 14px 14px;
 	background-color:   @bg;
-	text-color: 				@black;
+	text-color: 				@prompt;
 	font:							  "JetBrains Mono Nerd Font 16";
 }
 
 entry {
   background-color:               @bg;
   text-color:                     @fg;
-  placeholder-color:              @altblack;
+  placeholder-color:              @placeholder;
   expand:                         true;
   horizontal-align:               0;
   placeholder:                    " Search...";
@@ -42,7 +38,7 @@ entry {
 inputbar {
 	children: 						          [ prompt, entry ];
   background-color:               @bg;
-  text-color:                     @altblack;
+  text-color:                     @placeholder;
   expand:                         false;
 	border:							            0px;
   border-radius:                  0px;
@@ -53,7 +49,6 @@ listview {
   background-color:               @bg;
   padding:                        10px 10px 10px 10px;
   columns:                        1;
-  lines:                          8;
   spacing:                        4px;
   cycle:                          true;
   dynamic:                        true;
@@ -77,13 +72,6 @@ element {
 	padding: 						            8px 8px 8px 20px;
 }
 
-element-icon {
-  size:                           24px;
-  border:                         0px;
-  background-color:               @transparent;
-  text-color:                     @fg;
-}
-
 element-text {
   expand:                         true;
   horizontal-align:               0;
@@ -94,7 +82,7 @@ element-text {
 }
 
 element selected {
-  background-color:               @altbg;
+  background-color:               @selection;
   text-color:                     @fg;
 	//border:							            0 1px 0 1px;
   //border-radius:                  5px;

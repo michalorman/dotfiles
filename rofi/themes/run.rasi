@@ -1,0 +1,17 @@
+@import "base.rasi"
+
+configuration {
+  display-drun: 				"הּ";
+  display-run:  				" ";
+  drun-display-format:  "{name} [<span alpha="50%" weight='light' size='x-small'><i>({generic})</i></span>]";
+  //disable-history:      false;
+	//sidebar-mode:         false;
+}
+
+window {
+	width: 700px;
+}
+
+listview {
+  lines: 8;
+}

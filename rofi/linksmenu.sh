@@ -10,7 +10,7 @@ declare -A links=(
 ["  dev.to"]="https://dev.to/"
 )
 
-choice=$(printf '%s\n' "${!links[@]}" | sort -u | rofi -dmenu -p " " -i -selected-row 0 -theme ~/.config/rofi/picker-search.rasi)
+choice=$(printf '%s\n' "${!links[@]}" | sort -u | rofi -dmenu -p " " -i -l 8 -selected-row 0 -theme ~/.config/rofi/themes/picker-search.rasi)
 
 if [ "$choice" ]; then
     xdg-open "${links[$choice]}"

@@ -9,7 +9,7 @@ logout="  Logout"
 
 options="$lock\n$sleep\n$hibernate\n$restart\n$shutdown\n$logout"
 
-chosen="$(echo -e "$options" | rofi -dmenu -i -l 6 -selected-row 0 -theme ~/.config/rofi/picker.rasi)"
+chosen="$(echo -e "$options" | rofi -dmenu -i -l 6 -selected-row 0 -theme ~/.config/rofi/themes/picker.rasi)"
 
 case $chosen in
   $lock)
