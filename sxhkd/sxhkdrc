@@ -34,8 +34,8 @@ alt + {e,l}
     {edit-configs, links-menu}
 
 # Launch Applications
-super + shift + {f,w,r,g,c,d,s,v,i,j,m}
-    {thunar,firefox,terminal -e ranger,geany,code,discord,spotify,virtualbox,rest.insomnia.Insomnia,net.cozic.joplin_desktop,mongodb-compass}
+super + shift + {f,w,r,g,c,d,s,v,i,m}
+    {thunar,firefox,terminal -e ranger,geany,code,discord,spotify,virtualbox,rest.insomnia.Insomnia,mongodb-compass}
 
 # Volume controls
 XF86Audio{RaiseVolume,LowerVolume,Mute}
@@ -83,9 +83,9 @@ super + space
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest window
-#super + g
-	#bspc node -s biggest.window
+# swap the current node and the biggest local window (master)
+super + g
+	bspc node -s biggest.local
 
 #
 # state/flags
@@ -184,3 +184,4 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
