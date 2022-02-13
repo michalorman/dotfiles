@@ -8,19 +8,22 @@
 - link:
     ~/.gitconfig: git/gitconfig
     ~/.gitignore: git/gitignore
+
     ~/.config/nvim: nvim
+
     ~/.config/alacritty: alacritty
-    ~/.config/starship.toml: starship/starship.toml
+
     ~/.config/sxhkd/sxhkdrc: sxhkd/sxhkdrc
     ~/.config/bspwm/bspwmrc: bspwm/bspwmrc
     ~/.config/picom.conf: picom/picom.conf
+    ~/.config/polybar: polybar
+    ~/.config/rofi: rofi
+    ~/.config/dunstrc: dunst/dunstrc
+
     ~/.xinitrc: X11/xinitrc
 
     ~/.config/zsh: zsh/conf
     ~/.zshrc: zsh/zshrc
     ~/.zshenv: zsh/zshenv
-
-    ~/.config/polybar: polybar
-    ~/.config/rofi: rofi
 
     ~/.local/scripts: scripts

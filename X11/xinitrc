@@ -41,6 +41,12 @@ setxkbmap -option ctrl:nocaps
 # Keybinding daemon
 sxhkd &
 
+# Start removable disk automounter
+udiskie &
+
+# Launch notification daemon
+dunst -config "$HOME/.config/dunstrc" &
+
 # Start polybar
 "$HOME"/.config/polybar/launch.sh &
 

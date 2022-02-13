@@ -6,7 +6,8 @@
 pacman -S --noconfirm \
   base-devel linux-headers firefox alcritty git networkmanager lxappearance \
   cups thunar flatpak zoxide zsh dash exa pavucontrol playerctl fzf ripgrep aws-cli \
-  fd shellcheck flatpak xinit xorg-xclipboard zsh-syntax-highlighting most
+  fd shellcheck flatpak xinit xorg-xclipboard zsh-syntax-highlighting most sxiv \
+  udiskie dunst
 
 systemctl enable NetworkManager
 systemctl enable cups

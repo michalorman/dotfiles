@@ -48,8 +48,7 @@ for i in "${vbox[@]}"; do
   bspc rule -a "$i" desktop='^0' follow=on focus=on
 done
 
-declare -a floats=(1Password Viewmonitor GParted Appearance \
-Pavucontrol Xfce4-settings-manager)
+declare -a floats=(1Password Pavucontrol sxiv)
 for i in "${floats[@]}"; do
   bspc rule -a "$i" state=floating center=on follow=on focus=on
 done
