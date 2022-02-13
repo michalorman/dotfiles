@@ -1,0 +1,19 @@
+export PROMPT='%B%F{blue}%2~ %f%b%# '
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+compinit
+
+if [ -d ~/.config/zsh ]; then
+  for f in ~/.config/zsh/* ; do
+    . "$f"
+  done
+
+  unset f
+fi
+
+[ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
+
+# Plugins
+
+[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

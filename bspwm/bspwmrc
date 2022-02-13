@@ -1,10 +1,4 @@
-#!/usr/bin/env bash
-
-# Restore wallpaper
-bash "$HOME/.config/bspwm/.fehbg"
-
-pgrep -x sxhkd > /dev/null || sxhkd &
-"$HOME"/.config/polybar/launch.sh
+#!/bin/bash
 
 # bspc monitor -d '' '' '' '' '' '' '' '' '' '' '漣' ''
 # bspc monitor -d 'www' 'dev1' 'dev2' 'dev3' 'dev4' 'chat' 'doc' 'media' 'sys' 'vbox'
@@ -70,39 +64,39 @@ done
 ## Autostart
 
 # Kill if already running
-killall -9 picom sxhkd dunst xfce4-power-manager ksuperkey eww playerctld
+# killall -9 picom sxhkd dunst xfce4-power-manager ksuperkey eww playerctld
 
 # Launch notification daemon
-dunst -config "$HOME/.config/bspwm/dunstrc" &
+# dunst -config "$HOME/.config/bspwm/dunstrc" &
 
 # Enable Super Keys For Menu
-ksuperkey -e 'Super_L=Alt_L|F1' &
-ksuperkey -e 'Super_R=Alt_L|F1' &
+# ksuperkey -e 'Super_L=Alt_L|F1' &
+# ksuperkey -e 'Super_R=Alt_L|F1' &
 
 # Map Caps-Lock key to Ctrl
-setxkbmap -option ctrl:nocaps
+# setxkbmap -option ctrl:nocaps
 
 # polkit agent
-if [[ ! $(pidof xfce-polkit) ]]; then
-    /usr/lib/xfce-polkit/xfce-polkit &
-fi
+# if [[ ! $(pidof xfce-polkit) ]]; then
+#     /usr/lib/xfce-polkit/xfce-polkit &
+# fi
 
 # Launch keybindings daemon
-sxhkd &
+# sxhkd &
 
 # Enable power management
-xfce4-power-manager &
+# xfce4-power-manager &
 
 # Start udiskie
-udiskie &
+# udiskie &
 
 # start playerctld
-playerctld daemon
+# playerctld daemon
 
 # start compositor
-while pgrep -u "$UID" -x picom >/dev/null; do sleep 1; done
-picom --config "$HOME/.config/bspwm/picom.conf" &
+# while pgrep -u "$UID" -x picom >/dev/null; do sleep 1; done
+# picom --config "$HOME/.config/bspwm/picom.conf" &
 
 # change xfce4-terminal colorscheme
-XFCE_TERM_PATH="$HOME/.config/xfce4/terminal"
-cp "$XFCE_TERM_PATH"/colorschemes/tokyo-night "$XFCE_TERM_PATH"/terminalrc
+# XFCE_TERM_PATH="$HOME/.config/xfce4/terminal"
+# cp "$XFCE_TERM_PATH"/colorschemes/tokyo-night "$XFCE_TERM_PATH"/terminalrc

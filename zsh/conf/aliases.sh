@@ -16,17 +16,23 @@ alias gcm='git checkout master'
 alias gp='git push'
 alias gl='git pull'
 
-alias ss='ruby -run -e httpd -- -p 5000 .'
-
-alias be='bundle exec'
-
-alias fix-broken-osx-sound="sudo kill `ps -ax | grep 'coreaudiod' | grep 'sbin' | awk '{print $1}'`"
-
-alias la='ls -a'
-alias ll='ls -al'
-
-alias dotcode='code $DOTFILES'
-
 alias tmux='tmux -2'
 alias ts='tmux new -s "$(basename $PWD)"'
 alias tls='tmux ls'
+
+alias nv='nvim'
+
+# if type -q exa
+if [ -x "$(command -v exa)" ]; then
+  alias ls='exa -al --color=always --group-directories-first --icons' # preferred listing
+  alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs
+  alias ll='exa -l --color=always --group-directories-first --icons'  # long format
+  alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
+  alias l.="exa -a | egrep '^\.'"                                     # show only dotfiles
+fi
+
+alias untar='tar -zxvf '
+
+# if type -q fdfind
+#   alias fd=fdfind
+# end

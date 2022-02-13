@@ -8,18 +8,19 @@
 - link:
     ~/.gitconfig: git/gitconfig
     ~/.gitignore: git/gitignore
-    ~/.tmux.conf: tmux/tmux.conf
     ~/.config/nvim: nvim
     ~/.config/alacritty: alacritty
     ~/.config/starship.toml: starship/starship.toml
-    ~/.config/fish/config.fish: fish/config.fish
     ~/.config/sxhkd/sxhkdrc: sxhkd/sxhkdrc
     ~/.config/bspwm/bspwmrc: bspwm/bspwmrc
+    ~/.config/picom.conf: picom/picom.conf
+    ~/.xinitrc: X11/xinitrc
+
+    ~/.config/zsh: zsh/conf
+    ~/.zshrc: zsh/zshrc
+    ~/.zshenv: zsh/zshenv
 
     ~/.config/polybar: polybar
     ~/.config/rofi: rofi
 
     ~/.local/scripts: scripts
-
-      # - shell:
-      #- [chsh -s $(which fish), Making fish the default shell]

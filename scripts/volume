@@ -1,0 +1,30 @@
+#!/bin/bash
+
+print_usage() {
+  cat <<- EOF
+Simple volume control script.
+
+Usage:
+  volume command
+
+Commands:
+  up [amount]    - increase volume by amount (default: 5%)
+  down [amount]  - decrease volume by amount (default: 5%)
+  toggle         - toggle mute
+EOF
+}
+
+case "$1" in
+  "up")
+    pactl -- set-sink-volume @DEFAULT_SINK@ +"${2:-5}"%
+    ;;
+  "down")
+    pactl -- set-sink-volume @DEFAULT_SINK@ -"${2:-5}"%
+    ;;
+  "toggle")
+    pactl -- set-sink-mute @DEFAULT_SINK@ toggle
+    ;;
+  *)
+    print_usage
+    ;;
+esac

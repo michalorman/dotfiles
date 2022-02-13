@@ -3,8 +3,8 @@ env:
 
 window:
   padding:
-    x: 0
-    y: 0
+    x: 4
+    y: 4
 
   decoration: none
 
@@ -25,7 +25,7 @@ font:
     family: JetBrains Mono Nerd Font
     style: Bold Italic
 
-  size: 10
+  size: 11
   offset:
     x: 0
     y: 0

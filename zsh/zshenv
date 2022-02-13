@@ -1,0 +1,13 @@
+typeset -U PATH path
+
+path=("$HOME/.local/scripts" "$path[@]")
+
+export PATH
+export PAGER=most
+export TERMINAL=alacritty
+export EDITOR=nvim
+export BROWSER=brave
+
+if [[ "$(tty)" = "/dev/tty1" ]]; then
+  pgrep bspwm || startx
+fi

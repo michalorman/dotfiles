@@ -8,17 +8,9 @@ super + Escape
 
 # Launch Terminal
 super + Return
-    terminal
+    alacritty
 
-# Floating Alacritty Terminal
-super + shift + Return
-    terminal -f
-
-# Fullscreen Alacritty Terminal
-super + shift + t
-    terminal -m
-
-alt + F1
+super + p
     drun-menu
 
 # Launch Menus
@@ -34,12 +26,12 @@ alt + {e,l}
     {edit-configs, links-menu}
 
 # Launch Applications
-super + shift + {f,w,r,g,c,d,s,v,i,m}
-    {thunar,firefox,terminal -e ranger,geany,code,discord,spotify,virtualbox,rest.insomnia.Insomnia,mongodb-compass}
+#super + shift + {f,w,r,g,c,d,s,v,i,m}
+    #{thunar,firefox,terminal -e ranger,geany,code,discord,spotify,virtualbox,rest.insomnia.Insomnia,mongodb-compass}
 
-# Volume controls
+# Vlume controls
 XF86Audio{RaiseVolume,LowerVolume,Mute}
-    volume{ --up, --down, --toggle}
+    volume{ up, down, toggle}
 
 # Playback control
 XF86Audio{Play,Next,Prev}
