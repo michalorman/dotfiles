@@ -26,4 +26,6 @@
     ~/.zshrc: zsh/zshrc
     ~/.zshenv: zsh/zshenv
 
+    ~/.config/betterlockscreenrc: betterlockscreen/betterlockscreenrc
+
     ~/.local/scripts: scripts

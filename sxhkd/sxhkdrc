@@ -19,7 +19,7 @@ super + {x,n,d,s}
 
 # Lock Screen
 ctrl + alt + l
-    lock
+    lockscreen
 
 # custom dmenu scripts
 alt + {e,l}

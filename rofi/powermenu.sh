@@ -13,7 +13,7 @@ chosen="$(echo -e "$options" | rofi -dmenu -i -l 6 -selected-row 0 -theme ~/.con
 
 case $chosen in
   $lock)
-    lock
+    lockscreen
     ;;
   $sleep)
     systemctl suspend

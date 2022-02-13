@@ -8,4 +8,4 @@ flatpak install -y \
 
 # TODO:
 #   - install yay
-#   - instal yay packages: dashbinsh, zsh-autocomplete-git, lf
+#   - instal yay packages: dashbinsh, zsh-autocomplete-git, lf, betterlockscreen
