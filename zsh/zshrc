@@ -1,4 +1,16 @@
-export PROMPT='%B%F{blue}%2~ %f%b%# '
+# export PROMPT='%B%F{blue}%2~ %f%b%# '
+
+# Load version control information
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git*' formats '%fon %F{red} %b%f '
+
+precmd() { vcs_info }
+
+setopt prompt_subst
+
+NEWLINE=$'\n'
+PROMPT='${NEWLINE}%B%F{blue}%2~ ${vcs_info_msg_0_}${NEWLINE}%F{green}%f%b '
 
 # Completions
 autoload -Uz compinit
@@ -35,3 +47,5 @@ fi
 # Plugins
 
 [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

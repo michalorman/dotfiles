@@ -1,0 +1,41 @@
+#!/bin/bash
+
+print_usage() {
+  cat >&2 <<-EOF
+Simple wrapper script over the scrot for taking screenshots.
+
+Usage:
+  takeshot command
+
+Commands:
+  now       - Take the full screen screenshot.
+  win       - Take the screenshot of the selected window.
+  area      - Take the screenshot of the selected area.
+EOF
+}
+
+if [ ! "$(command -v scrot)" ]; then
+  >&2 echo "The scrot is missing. Install scrot to use this wrapper."
+
+  exit 1
+fi
+
+SHOTSDIR="$HOME"/Pictures/Screenshots
+
+[ ! -d "$SHOTSDIR" ] && mkdir -p "$SHOTSDIR"
+
+case "$1" in
+  "now")
+    scrot "$SHOTSDIR/%Y-%m-%d-%H%M%S-screenshot.jpg" -z -e 'notify-send -u low "Screenshot saved as $f"'
+    ;;
+  "win")
+    scrot "$SHOTSDIR/%Y-%m-%d-%H%M%S-screenshot.jpg" -s -b -z -e 'notify-send -u low "Screenshot saved as $f"'
+    ;;
+  "area")
+    scrot "$SHOTSDIR/%Y-%m-%d-%H%M%S-screenshot.jpg" -s -l style=dash,width=2,color='#7aa2f7' -z -e 'notify-send -u low "Screenshot saved as $f"'
+    ;;
+  *)
+    print_usage
+    exit 1
+    ;;
+esac

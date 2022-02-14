@@ -10,12 +10,13 @@ chosen="$(echo -e "$options" | rofi -dmenu -i -l 3 -selected-row 0 -theme ~/.con
 
 case $chosen in
   $now)
-    takeshot --now
+    takeshot now
     ;;
   $win)
-    takeshot --win
+    takeshot win
     ;;
   $area)
-    flameshot gui -p ~/Pictures/Screenshots
+    takeshot area
+    # flameshot gui -p ~/Pictures/Screenshots
     ;;
 esac

@@ -43,15 +43,16 @@ XF86MonBrightness{Up,Down}
 
 # screenshot
 Print
-    takeshot --now
+    takeshot now
 
 # screenshot active window
 ctrl + Print
-    takeshot --win
+    takeshot win
 
 # screenshot selected area
 ctrl + shift + Print
-    flameshot gui -p ~/Pictures/Screenshots
+    takeshot area
+    # flameshot gui -p ~/Pictures/Screenshots
 
 #
 #
