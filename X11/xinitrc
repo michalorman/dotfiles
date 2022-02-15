@@ -38,9 +38,6 @@ setxkbmap pl &
 # Remap capslock to ctrl
 setxkbmap -option ctrl:nocaps
 
-# Keybinding daemon
-sxhkd &
-
 # Start removable disk automounter
 udiskie &
 

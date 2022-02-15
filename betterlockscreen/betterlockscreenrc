@@ -13,7 +13,8 @@ wallpaper_cmd="feh --bg-fill"
 # i3lockcolor_bin="i3lock-color" # Manually set command for i3lock-color
 
 # default theme
-loginbox=1a1b26
+# loginbox=1a1b26
+loginbox=00000000
 loginshadow=00000000
 locktext="Type password to unlock..."
 font="JetBrainsMono Nerd Font"

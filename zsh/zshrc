@@ -1,5 +1,3 @@
-# export PROMPT='%B%F{blue}%2~ %f%b%# '
-
 # Load version control information
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git

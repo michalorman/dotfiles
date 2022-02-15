@@ -29,6 +29,9 @@ alt + {e,l}
 #super + shift + {f,w,r,g,c,d,s,v,i,m}
     #{thunar,firefox,terminal -e ranger,geany,code,discord,spotify,virtualbox,rest.insomnia.Insomnia,mongodb-compass}
 
+super + shift + {b}
+  {brave}
+
 # Vlume controls
 XF86Audio{RaiseVolume,LowerVolume,Mute}
     volume{ up, down, toggle}

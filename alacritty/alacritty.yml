@@ -8,6 +8,8 @@ window:
 
   decoration: none
 
+  opacity: 0.95
+
 font:
   normal:
     family: JetBrains Mono Nerd Font
@@ -63,8 +65,6 @@ colors:
   indexed_colors:
     - { index: 16, color: '0xff9e64' }
     - { index: 17, color: '0xdb4b4b' }
-
-# background_opacity: 0.95
 
 dynamic_title: true
 
