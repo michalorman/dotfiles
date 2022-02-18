@@ -1,0 +1,4 @@
+#!/bin/sh
+
+dmenu_run -c -l 10 -p 'run:' -i -bw 3 -F -h 35
+

@@ -1,5 +1,15 @@
 #!/bin/sh
 
-vol="$(pactl get-sink-volume @DEFAULT_SINK@ | grep Volume | awk '{print $5}')"
+mute="$(pactl get-sink-mute @DEFAULT_SINK@ | cut -d' ' -f 2)"
 
-echo -n " $vol"
+case "$mute" in
+  "yes")
+    echo " Muted"
+    ;;
+  *)
+    vol="$(pactl get-sink-volume @DEFAULT_SINK@ | grep Volume | awk '{print $5}')"
+
+    echo " $vol"
+    ;;
+esac
+

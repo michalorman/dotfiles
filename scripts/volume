@@ -17,12 +17,15 @@ EOF
 case "$1" in
   "up")
     pactl -- set-sink-volume @DEFAULT_SINK@ +"${2:-5}"%
+    kill -55 $(pidof dwmblocks)
     ;;
   "down")
     pactl -- set-sink-volume @DEFAULT_SINK@ -"${2:-5}"%
+    kill -55 $(pidof dwmblocks)
     ;;
   "toggle")
     pactl -- set-sink-mute @DEFAULT_SINK@ toggle
+    kill -55 $(pidof dwmblocks)
     ;;
   *)
     print_usage

@@ -67,6 +67,6 @@ fi
 dwmblocks &
 
 # Start dwm
-dwm
+exec dwm
 
 # exec bspwm

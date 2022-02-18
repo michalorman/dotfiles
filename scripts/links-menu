@@ -1,3 +1,3 @@
-#!/bin/env bash
+#!/bin/sh
 
-~/.config/rofi/linksmenu.sh
+~/.config/menu/links-menu
