@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 print_usage() {
   cat >&2 <<-EOF
@@ -38,4 +38,4 @@ case "$1" in
     print_usage
     exit 1
     ;;
-esac
+esac >/dev/null

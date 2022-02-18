@@ -1,3 +1,8 @@
+setopt menucomplete nobeep nobeep
+
+# Naje Ctrl-s not to freeze terminal
+stty stop undef
+
 # Load version control information
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
@@ -12,7 +17,10 @@ PROMPT='${NEWLINE}%B%F{blue}%2~ ${vcs_info_msg_0_}${NEWLINE}%F{green}%f%b '
 
 # Completions
 autoload -Uz compinit
+
 zstyle ':completion:*' menu select
+# zstyle ':completion:*' completer _extensions _complete _approximate
+
 compinit
 
 # Enable history
@@ -44,6 +52,20 @@ fi
 
 # Plugins
 
-[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zsh_add_file() {
+  [ -f "$1" ] && . "$1"
+}
+
+zsh_add_plugin() {
+  if [ -d "/usr/share/zsh/plugins/$1" ]; then
+    zsh_add_file "/usr/share/zsh/plugins/$1/$1.plugin.zsh" || zsh_add_file "/usr/share/zsh/plugins/$1/$1.zsh"
+  fi
+}
+
+zsh_add_plugin "zsh-syntax-highlighting"
+zsh_add_plugin "zsh-autosuggestions"
+
+# [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"

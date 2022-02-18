@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sxhkd &
-
 bspc monitor -d '' '' '' '' '' '' '' '' '' ''
 
 bspc config border_width         2

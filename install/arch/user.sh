@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
 sudo pacman -S --noconfirm \
-  docker
+  docker docker-compose
 
 flatpak install -y \
   slack spotify joplin dropbox insomnia
@@ -9,3 +9,7 @@ flatpak install -y \
 # TODO:
 #   - install yay
 #   - instal yay packages: dashbinsh, zsh-autocomplete-git, lf, betterlockscreen, acpitool
+
+sudo systemctl enable docker
+
+sudo usermod -aG docker $USER

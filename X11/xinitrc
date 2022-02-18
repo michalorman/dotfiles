@@ -45,7 +45,7 @@ udiskie &
 dunst -config "$HOME/.config/dunstrc" &
 
 # Start polybar
-"$HOME"/.config/polybar/launch.sh &
+# "$HOME"/.config/polybar/launch.sh &
 
 # Resolution
 xrandr -s 2560x1080 &
@@ -60,5 +60,13 @@ if [ -f ~/.fehbg ]; then
 	~/.fehbg &
 fi
 
-# dwm
-exec bspwm
+# Start hotkey demon
+# sxhkd &
+
+# Start dwmblocks
+dwmblocks &
+
+# Start dwm
+dwm
+
+# exec bspwm
