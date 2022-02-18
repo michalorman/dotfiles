@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/sh
 
 now="  Desktop"
 win="类  Window"

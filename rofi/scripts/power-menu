@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/sh
 
 lock="  Lock"
 sleep="鈴  Sleep"
