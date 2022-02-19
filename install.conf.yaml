@@ -28,7 +28,7 @@
 
     ~/.config/betterlockscreenrc: betterlockscreen/betterlockscreenrc
 
-    ~/.local/scripts: scripts
+    ~/.local/bin: scripts
 
     # ~/.config/menu: rofi/scripts
     ~/.config/menu: dmenu/scripts
