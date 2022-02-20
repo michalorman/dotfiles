@@ -32,12 +32,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 	unset f
 fi
 
-# Keymap Layout
-setxkbmap pl &
-
-# Remap capslock to ctrl
-setxkbmap -option ctrl:nocaps
-
 # Start removable disk automounter
 udiskie &
 
@@ -65,6 +59,9 @@ fi
 
 # Start dwmblocks
 dwmblocks &
+
+# Set keyboard layout and remap capslock to ctrl
+setxkbmap -layout pl -option ctrl:nocaps &
 
 # Start dwm
 exec dwm
