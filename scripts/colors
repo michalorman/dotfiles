@@ -1,17 +1,17 @@
 #!/bin/env bash
 
 # tokyonighth
-bg="#1a1b26"
+bg="#1a1b26"            # RGB: 26, 27, 38
 altbg="#444b6a"
 fg="#a9b1d6"
 black="#32344a"
-red="#f7768e"
-green="#9ece6a"
-yellow="#e0af68"
-blue="#7aa2f7"
-magenta="#ad8ee6"
-cyan="#449dab"
-white="#787c99"
+red="#f7768e"           # RGB: 247, 118, 142
+green="#9ece6a"         # RGB: 158, 206, 106
+yellow="#e0af68"        # RGB: 224, 175, 104
+blue="#7aa2f7"          # RGB: 122, 162, 247
+magenta="#ad8ee6"       # RGB: 173, 142, 230
+cyan="#449dab"          # RGB: 68, 157, 171
+white="#787c99"         # RGB: 120, 124, 153
 altblack="#444b6a"
 altred="#ff7a93"
 altgreen="#b9f27c"
@@ -19,5 +19,5 @@ altyellow="#ff9e64"
 altblue="#7da6ff"
 altmagenta="#bb9af7"
 altcyan="#0db9d7"
-altwhite="#acb0d0"
+altwhite="#acb0d0"      # RGB: 172, 176, 208
 

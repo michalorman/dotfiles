@@ -20,11 +20,12 @@
     ~/.config/rofi: rofi
     ~/.config/dunstrc: dunst/dunstrc
 
-    ~/.xinitrc: X11/xinitrc
+    ~/.config/X11: X11
 
     ~/.config/zsh: zsh/conf
     ~/.zshrc: zsh/zshrc
     ~/.zshenv: zsh/zshenv
+    ~/.zprofile: zsh/zprofile
 
     ~/.config/betterlockscreenrc: betterlockscreen/betterlockscreenrc
 

@@ -33,6 +33,8 @@ fi
 
 alias untar='tar -zxvf '
 
+alias sx="startx $XDG_CONFIG_HOME/X11/xinitrc"
+
 # if type -q fdfind
 #   alias fd=fdfind
 # end

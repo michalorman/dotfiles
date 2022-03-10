@@ -154,7 +154,14 @@ components.active[2][1] = {
     bg = colors.bg,
   },
 
-  right_sep = ' '
+  right_sep = {
+    str = '  ',
+
+    hl = {
+      fg = colors.fg,
+      bg = colors.bg,
+    },
+  }
 }
 
 components.active[2][2] = {
@@ -166,38 +173,47 @@ components.active[2][2] = {
   },
 
   icon = '  ',
+
+  right_sep = {
+    str = '  ',
+
+    hl = {
+      fg = colors.fg,
+      bg = colors.bg,
+    },
+  }
 }
+
+-- components.active[2][3] = {
+--   provider = '  ',
+--
+--   hl = function()
+--     return {
+--       fg = colors.bg,
+--       bg = mode_hl[vim.fn.mode()],
+--     }
+--   end,
+--
+--   left_sep = {
+--     str = ' ',
+--     hl = {
+--       fg = colors.bg,
+--       bg = colors.bg,
+--     }
+--   }
+--
+--   -- left_sep = {
+--   --   str = ' ' .. icons.round.left,
+--   --   hl = function()
+--   --     return {
+--   --       fg = mode_hl[vim.fn.mode()],
+--   --       bg = colors.bg,
+--   --     }
+--   --   end,
+--   -- },
+-- }
 
 components.active[2][3] = {
-  provider = '  ',
-
-  hl = function()
-    return {
-      fg = colors.bg,
-      bg = mode_hl[vim.fn.mode()],
-    }
-  end,
-
-  left_sep = {
-    str = ' ',
-    hl = {
-      fg = colors.bg,
-      bg = colors.bg,
-    }
-  }
-
-  -- left_sep = {
-  --   str = ' ' .. icons.round.left,
-  --   hl = function()
-  --     return {
-  --       fg = mode_hl[vim.fn.mode()],
-  --       bg = colors.bg,
-  --     }
-  --   end,
-  -- },
-}
-
-components.active[2][4] = {
   provider = function()
     local current_line = vim.fn.line "."
     local total_line = vim.fn.line "$"

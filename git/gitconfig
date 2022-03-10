@@ -35,6 +35,7 @@
 	ls = ls-files
   undo = reset --soft HEAD^
   a = add -A
+  bs = branches
 
 	#Show files ignored by git:
 	ign = ls-files -o -i --exclude-standard
