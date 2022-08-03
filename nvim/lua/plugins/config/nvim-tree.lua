@@ -4,9 +4,7 @@ if not present then
   return
 end
 
-nvim_tree.setup({
-  auto_close = true
-})
+nvim_tree.setup({})
 
 local utils = require 'utils'
 local map = utils.map

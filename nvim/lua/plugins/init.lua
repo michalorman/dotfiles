@@ -57,7 +57,8 @@ return packer.startup(function()
     'nvim-telescope/telescope.nvim',
 
     requires = {
-      'nvim-lua/plenary.nvim'
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-ui-select.nvim'
     },
 
     config = function()

@@ -43,7 +43,7 @@ map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { silent = true })
 map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { silent = true })
 map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', { silent = true })
 map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', { silent = true })
--- map('n', '<leader>.', '<cmd>lua vim.lsp.buf.code_action()<CR>', { silent = true })
+map('n', '<leader>.', '<cmd>lua vim.lsp.buf.code_action()<CR>', { silent = true })
 
 map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { silent = true })
 -- map('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { silent = true })

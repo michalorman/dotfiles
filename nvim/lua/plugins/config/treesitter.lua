@@ -5,7 +5,7 @@ if not present then
 end
 
 tsconfig.setup({
-  ensure_installed = "maintained",
+  ensure_installed = "all",
 
   highlight = {
     enable = true,
