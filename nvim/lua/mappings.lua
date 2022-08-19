@@ -21,3 +21,5 @@ map('n', 'L', '$')
 
 map('c', '%%', '<C-R>=expand("%:h")."/"<CR>')
 
+map("i", "<C-u>", "<c-r>=trim(system('uuidgen'))<cr>")
+map("n", "<C-u>", "i<c-r>=trim(system('uuidgen'))<cr><esc>")

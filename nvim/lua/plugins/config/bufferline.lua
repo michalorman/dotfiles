@@ -9,24 +9,24 @@ local colors = require 'colors'
 bufferline.setup({
   highlights = {
     background = {
-      guifg = colors.fg,
-      guibg = colors.bg_dark,
+      fg = colors.fg,
+      bg = colors.bg_dark,
     },
 
     buffer_selected = {
-      guifg = colors.fg_lighter_2,
-      guibg = colors.bg,
-      gui = 'bold'
+      fg = colors.fg_lighter_2,
+      bg = colors.bg,
+      bold = true
     },
 
     close_button = {
-      guifg = colors.fg,
-      guibg = colors.bg_dark,
+      fg = colors.fg,
+      bg = colors.bg_dark,
     },
 
     close_button_selected = {
-      guifg = colors.red,
-      guibg = colors.bg,
+      fg = colors.red,
+      bg = colors.bg,
     },
   }
 })
