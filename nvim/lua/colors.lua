@@ -1,24 +1,24 @@
-local theme_colors = require("tokyonight.colors").setup({
-  tokyonight_style = 'night'
+local colors = require('tokyonight.colors').setup({
+  style = 'night'
 })
 
 return {
-  bg_dark = theme_colors.bg_dark,
+  bg_dark = colors.bg_dark,
   bg = "#1a1b26",
-  bg_highlight = theme_colors.bg_highlight,
+  bg_highlight = colors.bg_highlight,
 
-  fg = theme_colors.fg_gutter,
-  fg_lighter = theme_colors.fg_dark,
+  fg = colors.fg_gutter,
+  fg_lighter = colors.fg_dark,
 
-  blue = theme_colors.blue,
-  dark_blue = theme_colors.blue0,
-  light_blue = theme_colors.blue5,
+  blue = colors.blue,
+  dark_blue = colors.blue0,
+  light_blue = colors.blue5,
 
-  yellow = theme_colors.yellow,
-  red = theme_colors.red,
-  green = theme_colors.green,
-  cyan = theme_colors.cyan,
-  orange = theme_colors.orange,
-  magenta = theme_colors.magenta,
-  teal = theme_colors.teal,
+  yellow = colors.yellow,
+  red = colors.red,
+  green = colors.green,
+  cyan = colors.cyan,
+  orange = colors.orange,
+  magenta = colors.magenta,
+  teal = colors.teal,
 }

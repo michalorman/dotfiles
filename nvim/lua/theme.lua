@@ -1,7 +1,7 @@
 -- in case we'd like to use it somewhere
 vim.g._theme = 'tokyonight'
 
-vim.g.tokyonight_style = "night"
+require 'plugins.config.tokyonight'
 
 local success, _ = pcall(vim.cmd, 'colorscheme ' .. vim.g._theme)
 
