@@ -6,6 +6,7 @@ SETTINGS=(lxappearance)
 TOOLS=( \
   firefox alacritty thunar flatpak zoside dash exa pavucontrol playerctl \
   fzf ripgrep aws-cli fd shellcheck most sxiv udiskie dunst scrot \
+  bat
 )
 ZSH=(zsh zsh-syntax-highlighting zsh-completions zsh-autosugesstions)
 PRINT=(cups cups-pdf system-config-printer sane-airscan simple-scan)

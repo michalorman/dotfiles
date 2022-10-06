@@ -12,7 +12,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 lsp_installer.on_server_ready(function(server)
   local opts = {
     on_attach = function(client)
-      if client.resolved_capabilities.document_highlight then
+      if client.server_capabilities.document_highlight then
         vim.cmd [[
           augroup lsp_document_highlight
             autocmd! * <buffer>
