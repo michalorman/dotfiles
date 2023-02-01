@@ -4,15 +4,16 @@ BASE=(base-devel linux-headers git networkmanager)
 XORG=(xorg-server xorg-xinit xorg-xclipboard xorg-xkill xorg-randr)
 SETTINGS=(lxappearance)
 TOOLS=( \
-  firefox alacritty thunar flatpak zoside dash exa pavucontrol playerctl \
+  firefox alacritty thunar flatpak zoxide dash exa pavucontrol playerctl \
   fzf ripgrep aws-cli fd shellcheck most sxiv udiskie dunst scrot \
-  bat
+  bat evince
 )
+FONTS=(noto-fonts-emoji)
 ZSH=(zsh zsh-syntax-highlighting zsh-completions zsh-autosugesstions)
 PRINT=(cups cups-pdf system-config-printer sane-airscan simple-scan)
 
 # Base packages
-pacman -S --noconfirm "${BASE[@]}" "${XORG[@]}" "${SETTINGS[@]}" "${TOOLS[@]}" "${ZSH[@]}" "${PRINT[@]}"
+pacman -S --noconfirm "${BASE[@]}" "${XORG[@]}" "${SETTINGS[@]}" "${TOOLS[@]}" "${FONTS[@]}" "${ZSH[@]}" "${PRINT[@]}"
 
 systemctl enable NetworkManager
 systemctl enable cups

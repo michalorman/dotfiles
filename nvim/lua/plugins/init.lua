@@ -197,6 +197,7 @@ return packer.startup(function()
 
   use {
     'glepnir/dashboard-nvim',
+    event = 'VimEnter',
 
     config = function()
       require 'plugins.config.dashboard-nvim'
