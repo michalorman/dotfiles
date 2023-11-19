@@ -1,4 +1,4 @@
-require('plugins')
-require('config')
-require('mappings')
-require('theme')
+require('config.setup')
+require('config.lazy')
+require('config.mappings')
+require('config.theme')

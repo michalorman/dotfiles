@@ -8,7 +8,7 @@ window:
 
   decoration: none
 
-  opacity: 0.95
+  opacity: 0.90
 
 font:
   normal:
@@ -35,6 +35,10 @@ font:
 # https://github.com/folke/tokyonight.nvim/blob/main/extras/alacritty_tokyonight_night.yml
 # TokyoNight Alacritty Colors
 colors:
+  cursor:
+    text: CellBackground
+    cursor: '0xc0caf5'
+
   # Default colors
   primary:
     background: '0x1a1b26'

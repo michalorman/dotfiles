@@ -6,7 +6,7 @@ SETTINGS=(lxappearance)
 TOOLS=( \
   firefox alacritty thunar flatpak zoxide dash exa pavucontrol playerctl \
   fzf ripgrep aws-cli fd shellcheck most sxiv udiskie dunst scrot \
-  bat evince
+  bat evince pacman-contrib intel-ucode
 )
 FONTS=(noto-fonts-emoji)
 ZSH=(zsh zsh-syntax-highlighting zsh-completions zsh-autosugesstions)
@@ -18,6 +18,9 @@ pacman -S --noconfirm "${BASE[@]}" "${XORG[@]}" "${SETTINGS[@]}" "${TOOLS[@]}" "
 systemctl enable NetworkManager
 systemctl enable cups
 systemctl enable fstrim.timer
+
+# Enable paccache to cleanup pacman cache weekly
+systemctl enable paccache.timer
 
 # Make dash a default shell
 ln -sfT dash /usr/bin/sh

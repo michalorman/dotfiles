@@ -1,44 +1,41 @@
-local signs = { Error = "﮻ ", Warn = " ", Hint = " ", Info = " " }
-
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
-local config = {
-  virtual_text = false,
-
-  update_in_insert = true,
-  severity_sort = true,
-
-  float = {
-    focusable = false,
-    style = "minimal",
-    -- border = "rounded",
-    source = "if_many",
-    header = "",
-    prefix = "",
-  },
-}
-
-vim.diagnostic.config(config)
-
--- Show line diagnostics automatically in hover window
-vim.o.updatetime = 250
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
--- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = "rounded",
-})
-
 local utils = require 'utils'
+
 local map = utils.map
 
+map('n', '<Leader>w', '<cmd>:w!<CR>')
+
+map('n', '<Tab>', ':bnext<CR>', { silent = true})
+map('n', '<S-Tab>', ':bprevious<CR>', { silent = true})
+map('n', '<leader>q', ':bw<cr>', { silent = true })
+
+map('n', '<C-h>', '<C-w>h')
+map('n', '<C-j>', '<C-w>j')
+map('n', '<C-k>', '<C-w>k')
+map('n', '<C-l>', '<C-w>l')
+
+map('n', '<leader><cr>', ':noh<cr>', { silent = true })
+map('n', '<leader>n', ':noh<cr>', { silent = true })
+
+map('n', 'H', '^')
+map('n', 'L', '$')
+
+map('c', '%%', '<C-R>=expand("%:h")."/"<CR>')
+
+map("i", "<C-u>", "<c-r>=trim(system('uuidgen'))<cr>")
+map("n", "<C-u>", "i<c-r>=trim(system('uuidgen'))<cr><esc>")
+
+-- nvim-tree toggle
+map('n', '<C-n>', ':NvimTreeToggle<cr>', { silent = true })
+
+--- Telescope
+map('n', '<C-p>', ':Telescope find_files <cr>', { silent = true })
+map('n', 'ff', ':Telescope find_files <cr>', { silent = true })
+map('n', 'fo', ':Telescope find_files <cr>', { silent = true })
+map('n', '<leader>g', ':Telescope live_grep <cr>', { silent = true })
+map('n', 'fb', ':Telescope buffers <cr>', { silent = true })
+-- map('n', '<leader>.', ':Telescope lsp_code_actions theme=cursor<cr>', { silent = true })
+
+--- LSP
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { silent = true })
 map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { silent = true })
 map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', { silent = true })

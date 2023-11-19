@@ -1,8 +1,6 @@
 -- in case we'd like to use it somewhere
 vim.g._theme = 'tokyonight'
 
-require 'plugins.config.tokyonight'
-
 local success, _ = pcall(vim.cmd, 'colorscheme ' .. vim.g._theme)
 
 if not success then
