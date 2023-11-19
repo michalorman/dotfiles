@@ -54,3 +54,11 @@ map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { silent = true })
 map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', { silent = true })
 map('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', { silent = true })
 map('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', { silent = true })
+
+-- trouble
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
+vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
+vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
+vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
+vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
