@@ -1,4 +1,4 @@
-require('config.setup')
-require('config.lazy')
-require('config.mappings')
-require('config.theme')
+require("config.setup")
+require("config.lazy")
+require("config.keymaps")
+require("config.theme")
