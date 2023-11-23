@@ -9,6 +9,9 @@ return {
 			typescript = {
 				{ "prettierd", "prettier" },
 			},
+			vue = {
+				{ "prettierd", "prettier" },
+			},
 		},
 		format_on_save = {
 			timeout_ms = 500,

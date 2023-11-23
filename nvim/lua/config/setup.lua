@@ -2,7 +2,9 @@ local g = vim.g
 local opt = vim.opt
 local cmd = vim.cmd
 
-g.mapleader = ","
+-- g.mapleader = ","
+g.mapleader = " "
+g.maplocalleader = " "
 
 opt.termguicolors = true
 opt.number = true
