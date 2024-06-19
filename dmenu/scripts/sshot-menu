@@ -4,7 +4,7 @@ now="  Desktop"
 win="类  Window"
 area="麗  Selection"
 
-options="$now\n$win\n$area"
+options="$now\n$win\n$area\n"
 
 chosen="$(echo "$options" | dmenu -c -l 10 -i -bw 3 -F -h 35)"
 
@@ -16,6 +16,7 @@ case "$chosen" in
     takeshot win
     ;;
   "$area")
-    takeshot area
+    #takeshot area
+    flameshot gui
     ;;
 esac

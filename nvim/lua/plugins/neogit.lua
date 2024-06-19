@@ -12,7 +12,7 @@ return {
 
 		neogit.setup()
 
-		vim.keymap.set("n", "<leader>c", neogit.open)
+		vim.keymap.set("n", "<leader>cs", neogit.open)
 		vim.keymap.set("n", "<leader>cc", function()
 			neogit.open({ "commit" })
 		end)
