@@ -22,6 +22,9 @@
 
     ~/.config/X11: X11
 
+    ~/.config/zed/settings.json: zed/settings.json
+    ~/.config/zed/keymap.json: zed/keymap.json
+
     ~/.config/zsh: zsh/conf
     ~/.zshrc: zsh/zshrc
     ~/.zshenv: zsh/zshenv
