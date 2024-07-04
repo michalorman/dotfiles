@@ -25,6 +25,9 @@ keymap.set("n", "<C-u>", "i<c-r>=trim(system('uuidgen'))<cr><esc>")
 
 keymap.set("n", "q", "<Nop>") -- disable recording
 
+keymap.set('n', '<leader>ff', [[:let @+ = expand('%')<CR>]], { silent = true })
+keymap.set('n', '<leader>fg', [[:let @+ = expand('%:p')<CR>]], { silent = true })
+
 --- LSP
 keymap.set("n", "gd", vim.lsp.buf.definition)
 keymap.set("n", "gD", vim.lsp.buf.declaration)
@@ -41,5 +44,5 @@ keymap.set("n", "<space>e", vim.diagnostic.open_float)
 keymap.set("n", "[d", vim.diagnostic.goto_prev)
 keymap.set("n", "]d", vim.diagnostic.goto_next)
 keymap.set("n", "<space>f", function()
-	vim.lsp.buf.format({ async = true })
+  vim.lsp.buf.format({ async = true })
 end)

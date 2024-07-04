@@ -21,14 +21,14 @@ opt.updatetime = 250
 opt.timeoutlen = 400
 opt.clipboard = "unnamedplus"
 opt.signcolumn = "number"
-opt.cursorline = true
+opt.cursorline = false
 opt.relativenumber = true
 opt.background = "dark"
 opt.showmode = false
 
 -- Optimizations
-opt.hidden = true -- enable background buffers
-opt.history = 100 -- remember n lines in history
+opt.hidden = true   -- enable background buffers
+opt.history = 100   -- remember n lines in history
 -- opt.lazyredraw = true -- faster scrolling
 opt.synmaxcol = 240 -- max column for syntax highlight
 

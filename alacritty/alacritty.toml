@@ -38,7 +38,7 @@ foreground = "0xc0caf5"
 TERM = "xterm-256color"
 
 [font]
-size = 11
+size = 12
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"
@@ -58,7 +58,7 @@ style = "Regular"
 
 [font.offset]
 x = 0
-y = 0
+y = 4
 
 [[keyboard.bindings]]
 action = "ToggleFullScreen"
