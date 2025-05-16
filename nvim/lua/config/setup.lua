@@ -25,6 +25,7 @@ opt.cursorline = false
 opt.relativenumber = true
 opt.background = "dark"
 opt.showmode = false
+opt.scrolloff = 4
 
 -- Optimizations
 opt.hidden = true   -- enable background buffers

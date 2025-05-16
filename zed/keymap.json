@@ -1,33 +1,34 @@
 [
   {
-    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "context": "Editor && vim_mode == normal",
     "bindings": {
       "space w": "workspace::Save",
       "space q": "pane::CloseActiveItem",
       "space g": "pane::DeploySearch",
-      "ctrl-n": "workspace::ToggleLeftDock",
-      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-n": "pane::RevealInProjectPanel",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
       "L": "editor::MoveToEndOfLine",
       "H": "editor::MoveToBeginningOfLine",
-      "space space": "diagnostics::Deploy"
+      "space space": "diagnostics::Deploy",
+      "ctrl-b": "workspace::ToggleLeftDock"
     }
   },
   {
     "context": "Dock",
     "bindings": {
-      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
     }
   },
   {
-    "context": "Editor && vim_mode == insert && !menu",
+    "context": "Editor && vim_mode == insert",
     "bindings": {
-      "j k": ["vim::SwitchMode", "Normal"]
+      "j k": "vim::SwitchToNormalMode"
     }
   },
   {

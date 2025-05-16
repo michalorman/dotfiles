@@ -7,11 +7,20 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "theme": "Nightfox",
-  "ui_font_size": 16,
+  "assistant": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-7-sonnet-latest"
+    },
+    "version": "2"
+  },
+  "theme": "Ayu Mirage",
 
-  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "ui_font_size": 16,
+  "buffer_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_size": 18,
+
+  "current_line_highlight": "gutter",
 
   "vim_mode": true,
 
@@ -43,6 +52,7 @@
   "git": {
     "inline_blame": {
       "enabled": false
-    }
+    },
+    "git_gutter": "hide"
   }
 }
