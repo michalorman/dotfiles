@@ -1,0 +1,10 @@
+#!/bin/sh
+
+status=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+
+if echo "$status" | grep -q "\[MUTED\]"; then
+  echo "  Muted"
+else
+  vol_percent=$(echo "$status" | awk '{printf "%d%%", $2 * 100}')
+  echo "  $vol_percent"
+fi

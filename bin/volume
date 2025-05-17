@@ -33,6 +33,7 @@ case "$1" in
     fi
     CLAMPED_VOL=$(clamp "$TARGET_VOL")
     wpctl set-volume "$TARGET" "$CLAMPED_VOL"
+    kill -55 $(pidof dwmblocks)
     ;;
   mute)
     if get_mute_state; then
@@ -40,6 +41,7 @@ case "$1" in
     else
       wpctl set-mute "$TARGET" 1
     fi
+    kill -55 $(pidof dwmblocks)
     ;;
   status)
     if get_mute_state; then
