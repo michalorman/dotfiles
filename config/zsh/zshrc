@@ -1,0 +1,22 @@
+setopt menucomplete nobeep nobeep
+
+# make ctrl-s not to freeze terminal
+stty stop undef
+
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+bindkey -e
+
+zstyle :compinstall filename '/home/morman/.zshrc'
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+compinit
+
+# Enable zoxide
+[ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
+
+[ -f ~/.aliases ] && . ~/.aliases
+
+eval "$(starship init zsh)"

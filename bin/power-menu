@@ -1,0 +1,34 @@
+#!/bin/sh
+
+lock="  Lock"
+sleep="鈴  Sleep"
+hibernate="  Hibernate"
+restart="勒  Restart"
+shutdown="  Shutdown"
+logout="  Logout"
+
+options="$lock\n$sleep\n$hibernate\n$restart\n$shutdown\n$logout"
+
+chosen="$(echo "$options" | dmenu -c -l 10 -i -bw 3 -F -h 35)"
+
+case "$chosen" in
+  "$lock")
+    lockscreen
+    ;;
+  "$sleep")
+    systemctl suspend
+    ;;
+  "$hibernate")
+    systemctl hibernate
+    ;;
+  "$restart")
+    systemctl reboot
+    ;;
+  "$shutdown")
+    systemctl poweroff
+    ;;
+  "$logout")
+    bspc quit
+    ;;
+esac
+

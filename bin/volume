@@ -1,0 +1,57 @@
+#!/bin/sh
+
+TARGET="@DEFAULT_AUDIO_SINK@"
+
+get_current_volume() {
+  wpctl get-volume "$TARGET" | awk '{ print $2 }'
+}
+
+get_mute_state() {
+  wpctl get-volume "$TARGET" | grep -q MUTED
+}
+
+clamp() {
+  VALUE="$1"
+  if awk "BEGIN{exit !($VALUE < 0)}"; then
+    echo "0"
+  elif awk "BEGIN{exit !($VALUE > 1)}"; then
+    echo "1"
+  else
+    echo "$VALUE"
+  fi
+}
+
+case "$1" in
+  up|down)
+    AMOUNT="${2:-5}"
+    CURRENT=$(get_current_volume)
+    DELTA=$(awk "BEGIN { print $AMOUNT / 100 }")
+    if [ "$1" = "up" ]; then
+      TARGET_VOL=$(awk "BEGIN { print $CURRENT + $DELTA }")
+    else
+      TARGET_VOL=$(awk "BEGIN { print $CURRENT - $DELTA }")
+    fi
+    CLAMPED_VOL=$(clamp "$TARGET_VOL")
+    wpctl set-volume "$TARGET" "$CLAMPED_VOL"
+    ;;
+  mute)
+    if get_mute_state; then
+      wpctl set-mute "$TARGET" 0
+    else
+      wpctl set-mute "$TARGET" 1
+    fi
+    ;;
+  status)
+    if get_mute_state; then
+      echo "Muted"
+    else
+      PERCENT=$(awk "BEGIN { printf \"%d\", $(get_current_volume) * 100 }")
+      echo "${PERCENT}%"
+    fi
+    ;;
+  *)
+    echo "Usage: $0 {up [amount]|down [amount]|mute|status}"
+    exit 1
+    ;;
+esac
+

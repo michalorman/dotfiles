@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ "$(command -v j4-dmenu-desktop)" ]; then
+  j4-dmenu-desktop --dmenu 'dmenu -c -l 10 -p "drun:" -i -bw 3 -F -h 35'
+else
+  dmenu_run -c -l 10 -p 'drun:' -i -bw 3 -F -h 35
+fi
+
