@@ -2,7 +2,7 @@
 
 BUILD=(base-devel linux-headers git)
 XORG=(xorg-server xorg-xinit xorg-xclipboard xorg-xkill)
-SYSTEM=(lxappearance networkmanager pacman-contrib thunar intel-ucode less most picom j4-dmenu-desktop)
+SYSTEM=(lxappearance networkmanager pacman-contrib thunar intel-ucode less most picom j4-dmenu-desktop feh nsxiv)
 TOOLS=(alacritty firefox thunar flatpak zoxide dash fzf ripgrep fd udiskie dunst bat eza vim neovim xclip man openssh)
 PRINT=(cups cups-pdf system-config-printer sane-airscan simple-scan)
 FONTS=(noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-font-nerd)

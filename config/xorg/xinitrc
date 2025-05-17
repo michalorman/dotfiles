@@ -47,9 +47,9 @@ picom --config "$HOME"/.config/picom/picom.conf &
 # [ -x "$(command -v playerctld)" ] && playerctld daemon
 
 # Restore wallpaper
-# if [ -f ~/.fehbg ]; then
-	# ~/.fehbg &
-# fi
+if [ -f ~/.fehbg ]; then
+	~/.fehbg &
+fi
 
 # Start dwmblocks
 dwmblocks &
