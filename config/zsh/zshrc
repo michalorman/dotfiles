@@ -14,9 +14,37 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 compinit
 
+autoload -U colors && colors
+
+TEAL="%B%F{cyan}"
+VIOLET="%B%F{magenta}"
+GREEN="%F{green}"
+RESET="%f%b"
+
+git_branch() {
+  local branch
+  branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+  [[ -n $branch ]] && echo " ${VIOLET} $branch${RESET}"
+}
+
+setopt prompt_subst
+
+PROMPT=$'\n'"${TEAL}%~\$(git_branch)${RESET}"$'\n'"${GREEN}❯ ${RESET}"
+
+zsh_add_file() {
+  [ -f "$1" ] && . "$1"
+}
+
+zsh_add_plugin() {
+  if [ -d "/usr/share/zsh/plugins/$1" ]; then
+    zsh_add_file "/usr/share/zsh/plugins/$1/$1.plugin.zsh" || zsh_add_file "/usr/share/zsh/plugins/$1/$1.zsh"
+  fi
+}
+
+zsh_add_plugin "zsh-syntax-highlighting"
+zsh_add_plugin "zsh-autosuggestions"
+
 # Enable zoxide
 [ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
 
 [ -f ~/.aliases ] && . ~/.aliases
-
-eval "$(starship init zsh)"

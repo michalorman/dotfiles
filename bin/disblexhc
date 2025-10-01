@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Set keyboard layout and remap capslock to ctrl
+setxkbmap -layout pl -option ctrl:nocaps

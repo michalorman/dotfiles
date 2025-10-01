@@ -1,0 +1,21 @@
+#!/bin/sh
+
+fixkbd="   Set keyboard mapping"
+disablexhc="󰒲   Disable XHC wakeup"
+
+options="$fixkbd\n$disablexhc"
+
+selected="$(echo "$options" | dmenu -c -l 5 -i -bw 3 -h 35)"
+
+if [ -z "$selected" ]; then
+  exit 0
+fi
+
+case "$selected" in
+  "$fixkbd")
+    fixkbd
+    ;;
+  "$disablexhc")
+    disablexhc
+    ;;
+esac

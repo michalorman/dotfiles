@@ -1,0 +1,28 @@
+#!/bin/sh
+
+NOTES_DIR="$HOME/Notes"
+
+notes="$(eza -s modified -r -1 "$NOTES_DIR")"
+
+selected="$(printf "%s\n" "New note" "$notes" | dmenu -c -l 10 -i -bw 3 -h 35)"
+
+if [ -z "$selected" ]; then
+  exit 0
+fi
+
+if [ "$selected" = "New note" ]; then
+  new_note=$(dmenu -p "Enter new note name:" -c -l 1 -bw 3 </dev/null)
+  if [ -n "$new_note" ]; then
+    case "$new_note" in
+      *.*) ;;
+      *) new_note="$new_note.md" ;;
+    esac
+
+    note_path="$NOTES_DIR/$new_note"
+
+    touch "$note_path"
+    $TERMINAL -e nvim "$note_path"
+  fi
+else
+  $TERMINAL -e nvim "$NOTES_DIR/$selected"
+fi
