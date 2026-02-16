@@ -8,7 +8,7 @@ PRINT=(cups cups-pdf system-config-printer sane-airscan simple-scan)
 FONTS=(noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-font-nerd)
 SHELL=(dash zsh zsh-syntax-highlighting zsh-completions zsh-autosuggestions)
 DWM=(libx11 libxinerama libxft)
-EXTRAS=(lua luarocks ffmpeg vlc vlc-plugin-ffmpeg)
+EXTRAS=(lua luarocks ffmpeg vlc vlc-plugin-ffmpeg lsof)
 NODE=(nodejs npm)
 
 pacman -S --noconfirm --needed "${BUILD[@]}" "${XORG[@]}" "${SYSTEM[@]}" "${TOOLS[@]}" "${PRINT[@]}" "${FONTS[@]}" "${SHELL[@]}" "${DWM[@]}" "${EXTRAS[@]}" "${NODE[@]}"
