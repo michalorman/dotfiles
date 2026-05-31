@@ -23,6 +23,18 @@ if [ -f "$usermodmap" ]; then
 	xmodmap "$usermodmap"
 fi
 
+# HiDPI scaling for BenQ RD280U (3840x2560, 164 PPI).
+export XCURSOR_SIZE=32
+
+xrdb -merge <<'EOF'
+Xft.dpi: 164
+Xft.antialias: 1
+Xft.hinting: 1
+Xft.hintstyle: hintslight
+Xft.rgba: rgb
+Xcursor.size: 32
+EOF
+
 # start some nice programs
 
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
@@ -39,7 +51,7 @@ udiskie &
 dunst -config "$HOME/.config/dunst/dunstrc" &
 
 # Resolution
-xrandr -s 2560x1080 &
+#xrandr -s 2560x1080 &
 
 # Compositor
 picom --config "$HOME"/.config/picom/picom.conf &
@@ -52,7 +64,7 @@ if [ -f ~/.fehbg ]; then
 fi
 
 # Start dwmblocks
-dwmblocks &
+#dwmblocks &
 
 # Set keyboard layout and remap capslock to ctrl
 setxkbmap -layout pl -option ctrl:nocaps &
@@ -63,5 +75,5 @@ if command -v gnome-keyring-daemon >/dev/null 2>&1; then
   export SSH_AUTH_SOCK
 fi
 
-# Start dwm
-exec dwm
+# Start wm
+exec opendwm
