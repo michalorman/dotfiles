@@ -4,13 +4,14 @@ set -euo pipefail
 
 BUILD=(base-devel linux-headers git)
 XORG=(xorg-server xorg-xinit xorg-xclipboard xorg-xkill)
-SYSTEM=(lxappearance networkmanager pacman-contrib thunar intel-ucode less most picom j4-dmenu-desktop feh nsxiv playerctl pavucontrol)
+SYSTEM=(lxappearance networkmanager pacman-contrib thunar amd-ucode less most picom j4-dmenu-desktop feh nsxiv playerctl pavucontrol)
 TOOLS=(alacritty firefox thunar flatpak zoxide dash fzf ripgrep fd udiskie dunst bat eza vim neovim tree-sitter-cli xclip man openssh flameshot)
 PRINT=(cups cups-pdf system-config-printer sane-airscan simple-scan)
 FONTS=(noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-font-nerd)
 SHELL=(dash zsh zsh-syntax-highlighting zsh-completions zsh-autosuggestions)
 DWM=(libx11 libxinerama libxft)
 EXTRAS=(lua luarocks ffmpeg vlc vlc-plugin-ffmpeg lsof)
+AMD_GPU=(linux-firmware mesa xf86-video-amdgpu vulkan-radeon lib32-mesa lib32-vulkan-radeon mesa-utils vulkan-tools libva-utils vdpauinfo nvtop radeontop)
 NODE=(nodejs npm)
 
 if (( EUID != 0 )); then
@@ -30,6 +31,42 @@ run_as_target_user() {
 	else
 		sudo -u "$TARGET_USER" env HOME="$TARGET_HOME" "$@"
 	fi
+}
+
+enable_multilib() {
+	if pacman-conf --repo-list | grep -qx multilib; then
+		return
+	fi
+
+	local pacman_conf=/etc/pacman.conf
+	local tmp_conf
+	tmp_conf="$(mktemp)"
+
+	awk '
+		BEGIN { in_multilib = 0 }
+		/^[[:space:]]*#[[:space:]]*\[multilib\][[:space:]]*$/ {
+			print "[multilib]"
+			in_multilib = 1
+			next
+		}
+		in_multilib && /^[[:space:]]*#[[:space:]]*Include[[:space:]]*=[[:space:]]*\/etc\/pacman\.d\/mirrorlist[[:space:]]*$/ {
+			print "Include = /etc/pacman.d/mirrorlist"
+			in_multilib = 0
+			next
+		}
+		in_multilib && /^[[:space:]]*\[/ { in_multilib = 0 }
+		{ print }
+	' "$pacman_conf" > "$tmp_conf"
+
+	if ! pacman-conf --config "$tmp_conf" --repo-list | grep -qx multilib; then
+		rm -f "$tmp_conf"
+		printf 'Unable to enable [multilib] in %s. Please enable it manually.\n' "$pacman_conf" >&2
+		return 1
+	fi
+
+	install -m 0644 "$tmp_conf" "$pacman_conf"
+	rm -f "$tmp_conf"
+	pacman -Syu --noconfirm
 }
 
 install_git_project() {
@@ -62,7 +99,9 @@ install_git_project() {
 	make -C "$repo_dir" install
 }
 
-pacman -S --noconfirm --needed "${BUILD[@]}" "${XORG[@]}" "${SYSTEM[@]}" "${TOOLS[@]}" "${PRINT[@]}" "${FONTS[@]}" "${SHELL[@]}" "${DWM[@]}" "${EXTRAS[@]}" "${NODE[@]}"
+enable_multilib
+
+pacman -S --noconfirm --needed "${BUILD[@]}" "${XORG[@]}" "${SYSTEM[@]}" "${TOOLS[@]}" "${PRINT[@]}" "${FONTS[@]}" "${SHELL[@]}" "${DWM[@]}" "${EXTRAS[@]}" "${AMD_GPU[@]}" "${NODE[@]}"
 
 # Change the login shell for the user that invoked sudo.
 ZSH_PATH="$(command -v zsh)"
