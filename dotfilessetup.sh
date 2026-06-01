@@ -6,14 +6,21 @@ create_symlink() {
 	local target="$1"
 	local link_path="$2"
 
-	if [[ -L "$link_path" || -d "$link_path" || -f "$link_path" ]]; then
-		rm -rf "$link_path"
+	if [[ -L "$link_path" ]]; then
+		if [[ "$(readlink "$link_path")" == "$target" ]]; then
+			return
+		fi
+
+		rm "$link_path"
+	elif [[ -e "$link_path" ]]; then
+		printf 'Refusing to replace existing non-symlink: %s\n' "$link_path" >&2
+		return 1
 	fi
 
 	ln -s "$target" "$link_path"
 }
 
-mkdir -p "$HOME/.local/bin"
+mkdir -p "$HOME/.config" "$HOME/.local"
 
 create_symlink "$HOME/Code/system/config/xorg/xinitrc" "$HOME/.xinitrc"
 create_symlink "$HOME/Code/system/config/alacritty" "$HOME/.config/alacritty"
@@ -30,4 +37,3 @@ create_symlink "$HOME/Code/system/config/zsh/zshenv" "$HOME/.zshenv"
 create_symlink "$HOME/Code/system/config/zsh/aliases" "$HOME/.aliases"
 
 create_symlink "$HOME/Code/system/bin" "$HOME/.local/bin"
-

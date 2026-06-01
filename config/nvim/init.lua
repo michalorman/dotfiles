@@ -1,4 +1,5 @@
 require("config.setup")
-require("config.lazy")
+require("config.pack")
+require("plugins").setup()
 require("config.keymaps")
 require("config.theme")
