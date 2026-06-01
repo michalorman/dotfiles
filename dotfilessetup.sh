@@ -27,6 +27,8 @@ create_symlink "$HOME/Code/system/config/alacritty" "$HOME/.config/alacritty"
 create_symlink "$HOME/Code/system/config/nvim" "$HOME/.config/nvim"
 create_symlink "$HOME/Code/system/config/picom" "$HOME/.config/picom"
 create_symlink "$HOME/Code/system/config/dunst" "$HOME/.config/dunst"
+create_symlink "$HOME/Code/system/config/helium-browser-flags.conf" "$HOME/.config/helium-browser-flags.conf"
+create_symlink "$HOME/Code/system/config/mimeapps.list" "$HOME/.config/mimeapps.list"
 
 create_symlink "$HOME/Code/system/config/git/gitconfig" "$HOME/.gitconfig"
 create_symlink "$HOME/Code/system/config/git/gitignore" "$HOME/.gitignore"

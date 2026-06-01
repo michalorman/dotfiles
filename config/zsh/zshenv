@@ -12,4 +12,4 @@ export PATH
 export PAGER=most
 export TERMINAL=alacritty
 export EDITOR=nvim
-export BROWSER=brave
+export BROWSER=helium-browser
