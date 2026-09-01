@@ -47,4 +47,5 @@ zsh_add_plugin "zsh-autosuggestions"
 # Enable zoxide
 [ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh)"
 
+[ -f ~/.zshsecret ] && . ~/.zshsecret
 [ -f ~/.aliases ] && . ~/.aliases

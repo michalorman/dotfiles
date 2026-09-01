@@ -4,22 +4,36 @@ CAPTURES_PATH="$HOME/Pictures/Screenshots"
 
 [ ! -d "$CAPTURES_PATH" ] && mkdir -p "$CAPTURES_PATH"
 
+screenshot_path() {
+  printf '%s/%s.png' "$CAPTURES_PATH" "$(date +%F_%H-%M-%S)"
+}
+
+notify_saved() {
+  dunstify "Screenshot saved to $1"
+}
+
+edit_saved() {
+  notify_saved "$1"
+  swappy -f "$1" >/dev/null 2>&1 &
+}
+
 now="󰇄  Desktop"
 win="  Window"
 area="󰒉  Selection"
-
-options="$now\n$win\n$area"
 
 chosen="$(printf "%s\n" "$now" "$win" "$area" | dmenu -c -l 10 -i -bw 3 -F -h 35)"
 
 case "$chosen" in
   "$now")
-    flameshot full --path "$HOME/Pictures/Screenshots"
+    path="$(screenshot_path)"
+    maim "$path" && edit_saved "$path"
     ;;
   "$win")
-    takeshot win
+    path="$(screenshot_path)"
+    maim -st 9999999 "$path" && edit_saved "$path"
     ;;
   "$area")
-    flameshot gui
+    path="$(screenshot_path)"
+    maim -s "$path" && edit_saved "$path"
     ;;
 esac

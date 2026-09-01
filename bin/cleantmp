@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# Clean up serverless build leftovers in /tmp.
+# Serverless bundling leaves dirs named <functionName>-<13-digit-ms-timestamp>
+# in /tmp. On a tmpfs (ramdisk) these slowly eat RAM, so this removes them.
+#
+# Usage: cleantmp [OPTIONS]
+#   -n, --dry-run       only show what would be deleted
+#   -a, --min-age MIN   only delete dirs older than MIN minutes (default: 60)
+#   -h, --help          show this help
+
+set -euo pipefail
+
+TMP_DIR="/tmp"
+MIN_AGE=60
+DRY_RUN=0
+
+usage() {
+  sed -n '2,10p' "$0" | sed 's/^# \{0,1\}//'
+  exit "${1:-0}"
+}
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -n|--dry-run) DRY_RUN=1 ;;
+    -a|--min-age)
+      shift
+      [ $# -gt 0 ] || usage 1
+      MIN_AGE="$1"
+      ;;
+    -h|--help) usage ;;
+    *) usage 1 ;;
+  esac
+  shift
+done
+
+case "$MIN_AGE" in
+  *[!0-9]*|'') echo "error: --min-age must be a number of minutes" >&2; exit 1 ;;
+esac
+
+mapfile -d '' leftovers < <(
+  find "$TMP_DIR" -maxdepth 1 -type d -user "$USER" \
+    -regextype posix-extended \
+    -regex '.*/[A-Za-z0-9][A-Za-z0-9_-]*-[0-9]{13}' \
+    -mmin +"$MIN_AGE" -print0
+)
+
+count=${#leftovers[@]}
+if [ "$count" -eq 0 ]; then
+  echo "nothing to clean (no serverless leftovers older than ${MIN_AGE}m in $TMP_DIR)"
+  exit 0
+fi
+
+size=$(du -shc "${leftovers[@]}" 2>/dev/null | tail -1 | cut -f1)
+
+echo "found $count serverless leftover dirs ($size) older than ${MIN_AGE}m:"
+printf '  %s\n' "${leftovers[@]}"
+
+if [ "$DRY_RUN" -eq 1 ]; then
+  echo "dry run: nothing deleted"
+  exit 0
+fi
+
+rm -rf -- "${leftovers[@]}"
+echo "deleted $count dirs, freed ~$size"

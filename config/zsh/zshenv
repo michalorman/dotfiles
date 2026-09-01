@@ -2,14 +2,14 @@ XDG_CONFIG_HOME="$HOME/.config"
 XDG_CACHE_HOME="$HOME/.cache"
 XDG_DATA_HOME="$HOME/.local/share"
 
-VOLTA_HOME="$HOME/.volta"
 
 typeset -U PATH path
 
-path=("$VOLTA_HOME/bin" "$HOME/.local/bin" "$path[@]")
 export PATH
 
 export PAGER=most
 export TERMINAL=alacritty
 export EDITOR=nvim
 export BROWSER=helium-browser
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$HOME/.local/bin:$VOLTA_HOME/bin:$PATH"
