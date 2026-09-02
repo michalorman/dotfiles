@@ -68,6 +68,8 @@ if command -v dbus-update-activation-environment >/dev/null 2>&1; then
 		XDG_SESSION_TYPE
 fi
 
+systemctl --user start graphical-session.target
+
 # Start removable disk automounter
 udiskie &
 

@@ -1,0 +1,23 @@
+state_file = "auto"
+
+[hotkey]
+enabled = false
+
+[audio]
+device = "default"
+max_duration_secs = 60
+
+[whisper]
+mode = "local"
+model = "base.en"
+language = "en"
+
+[output]
+mode = "type"
+fallback_to_clipboard = true
+
+[output.notification]
+on_transcription = false
+
+[osd]
+enabled = false

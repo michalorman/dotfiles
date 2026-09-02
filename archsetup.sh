@@ -5,7 +5,7 @@ set -euo pipefail
 BUILD=(base-devel linux-headers git)
 XORG=(xorg-server xorg-xinit xorg-xclipboard xorg-xkill xorg-xrandr)
 SYSTEM=(lxappearance networkmanager pacman-contrib thunar amd-ucode less most picom j4-dmenu-desktop feh nsxiv playerctl pavucontrol)
-TOOLS=(alacritty firefox thunar flatpak zoxide dash fzf ripgrep fd udiskie dunst bat eza vim neovim tree-sitter-cli xclip man openssh maim swappy xdg-utils)
+TOOLS=(alacritty firefox thunar flatpak zoxide dash fzf ripgrep fd udiskie dunst bat eza vim neovim tree-sitter-cli xclip man openssh maim swappy xdg-utils dua-cli tmux)
 PRINT=(cups cups-pdf system-config-printer sane-airscan simple-scan)
 FONTS=(noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-font-nerd)
 SHELL=(dash zsh zsh-syntax-highlighting zsh-completions zsh-autosuggestions)

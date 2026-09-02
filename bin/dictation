@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Keep window-manager bindings independent from the dictation backend.
+case "${1:-}" in
+  start|stop|toggle|cancel)
+    exec voxtype record "$1"
+    ;;
+  status)
+    exec voxtype status
+    ;;
+  configure)
+    exec voxtype configure
+    ;;
+  *)
+    printf 'Usage: %s {start|stop|toggle|cancel|status|configure}\n' "$0" >&2
+    exit 2
+    ;;
+esac

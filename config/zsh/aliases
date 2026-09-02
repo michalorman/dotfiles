@@ -17,7 +17,8 @@ alias gp='git push'
 alias gl='git pull'
 
 alias tmux='tmux -2'
-alias ts='tmux new -s "$(basename $PWD)"'
+alias ts='tmux new-session -A -s "$(basename "$PWD")" -c "$PWD"'
+alias ta='tmux attach-session'
 alias tls='tmux ls'
 
 alias nv='nvim'
