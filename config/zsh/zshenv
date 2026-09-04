@@ -11,6 +11,6 @@ export PATH
 export PAGER=most
 export TERMINAL=alacritty
 export EDITOR=nvim
-export BROWSER=helium-browser
+export BROWSER=firefox
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$HOME/.local/bin:$VOLTA_HOME/bin:$PATH"

@@ -1,0 +1,5 @@
+[opener]
+nsxiv = [{ run = "nsxiv %s", orphan = true, desc = "Open with nsxiv", for = "unix" }]
+
+[open]
+prepend_rules = [{ mime = "image/*", use = ["nsxiv", "open"] }]

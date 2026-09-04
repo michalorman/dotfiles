@@ -7,12 +7,12 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 
 # merge in defaults and keymaps
 
-if [ -f $sysresources ]; then
-	xrdb -merge $sysresources
+if [ -f "$sysresources" ]; then
+	xrdb -merge "$sysresources"
 fi
 
-if [ -f $sysmodmap ]; then
-	xmodmap $sysmodmap
+if [ -f "$sysmodmap" ]; then
+	xmodmap "$sysmodmap"
 fi
 
 if [ -f "$userresources" ]; then
@@ -31,6 +31,7 @@ export XDG_CURRENT_DESKTOP=opendwm
 export XDG_SESSION_DESKTOP=opendwm
 export DESKTOP_SESSION=opendwm
 export XDG_SESSION_TYPE=x11
+export PATH="$HOME/.local/bin:$PATH"
 
 xrdb -merge <<'EOF'
 Xft.dpi: 164

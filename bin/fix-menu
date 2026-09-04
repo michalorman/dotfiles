@@ -13,9 +13,9 @@ fi
 
 case "$selected" in
   "$fixkbd")
-    fixkbd
+    setkbd
     ;;
   "$disablexhc")
-    disablexhc
+    disblexhc
     ;;
 esac

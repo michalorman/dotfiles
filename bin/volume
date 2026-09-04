@@ -21,6 +21,10 @@ clamp() {
   fi
 }
 
+refresh_status() {
+  kill -55 "$(pidof dwmblocks)" 2>/dev/null || true
+}
+
 case "$1" in
   up|down)
     AMOUNT="${2:-5}"
@@ -33,7 +37,7 @@ case "$1" in
     fi
     CLAMPED_VOL=$(clamp "$TARGET_VOL")
     wpctl set-volume "$TARGET" "$CLAMPED_VOL"
-    kill -55 $(pidof dwmblocks)
+    refresh_status
     ;;
   mute)
     if get_mute_state; then
@@ -41,7 +45,7 @@ case "$1" in
     else
       wpctl set-mute "$TARGET" 1
     fi
-    kill -55 $(pidof dwmblocks)
+    refresh_status
     ;;
   status)
     if get_mute_state; then
@@ -56,4 +60,3 @@ case "$1" in
     exit 1
     ;;
 esac
-

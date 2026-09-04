@@ -1,0 +1,13 @@
+theme = ""
+
+eq_preset = "Electronic"
+eq = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+visualizer = "Scope"
+audio_device = "alsa_output.usb-Creative_Technology_Ltd_Creative_Pebble_X_Plus_MINION-MX-DEV-SN0-01.analog-stereo"
+repeat = "Off"
+provider = "youtube"
+
+[radio]
+country = "none"
+
+[youtube]

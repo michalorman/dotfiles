@@ -11,7 +11,7 @@ chosen="$(printf "%s\n" "$lock" "$sleep" "$hibernate" "$restart" "$shutdown" "$l
 
 case "$chosen" in
   "$lock")
-    lockscreen
+    slock
     ;;
   "$sleep")
     systemctl suspend
@@ -29,4 +29,3 @@ case "$chosen" in
     pkill -KILL -x dwm
     ;;
 esac
-
