@@ -1,0 +1,4 @@
+[Unit]
+Description=X11 graphical session
+Wants=graphical-session.target
+After=graphical-session.target

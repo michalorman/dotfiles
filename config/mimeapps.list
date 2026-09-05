@@ -1,14 +1,16 @@
 [Default Applications]
-application/xhtml+xml=firefox.desktop
-text/html=firefox.desktop
-x-scheme-handler/http=firefox.desktop
-x-scheme-handler/https=firefox.desktop
-x-scheme-handler/about=firefox.desktop
-x-scheme-handler/unknown=firefox.desktop
+application/xhtml+xml=helium.desktop
+text/html=helium.desktop
+x-scheme-handler/http=helium.desktop
+x-scheme-handler/https=helium.desktop
+x-scheme-handler/about=helium.desktop
+x-scheme-handler/unknown=helium.desktop
+x-scheme-handler/slack=slack.desktop
 
 [Added Associations]
-application/xhtml+xml=firefox.desktop;
-text/html=firefox.desktop;
-x-scheme-handler/http=firefox.desktop;
-x-scheme-handler/https=firefox.desktop;
-video/mp4=vlc.desktop;firefox.desktop;
+application/xhtml+xml=helium.desktop;
+text/html=helium.desktop;
+x-scheme-handler/http=helium.desktop;
+x-scheme-handler/https=helium.desktop;
+video/mp4=vlc.desktop;helium.desktop;
+x-scheme-handler/slack=slack.desktop;

@@ -58,7 +58,12 @@ create_symlink "$REPO_DIR/config/dunst" "$HOME/.config/dunst"
 create_symlink "$REPO_DIR/config/voxtype" "$HOME/.config/voxtype"
 create_symlink "$REPO_DIR/config/yazi" "$HOME/.config/yazi"
 link_cliamp_config
+create_symlink "$REPO_DIR/config/helium-browser-flags.conf" "$HOME/.config/helium-browser-flags.conf"
 create_symlink "$REPO_DIR/config/mimeapps.list" "$HOME/.config/mimeapps.list"
+
+mkdir -p "$HOME/.config/systemd/user"
+create_symlink "$REPO_DIR/config/systemd/user/x11-session.target" "$HOME/.config/systemd/user/x11-session.target"
+systemctl --user daemon-reload
 
 create_symlink "$REPO_DIR/config/git/gitconfig" "$HOME/.gitconfig"
 create_symlink "$REPO_DIR/config/git/gitignore" "$HOME/.gitignore"
