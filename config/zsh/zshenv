@@ -9,7 +9,7 @@ typeset -U PATH path
 export PATH
 
 export PAGER=most
-export TERMINAL=alacritty
+export TERMINAL=ghostty
 export EDITOR=nvim
 export BROWSER=helium-browser
 export VOLTA_HOME="$HOME/.volta"

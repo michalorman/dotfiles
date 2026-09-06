@@ -32,32 +32,16 @@ create_symlink() {
 	ln -s "$target" "$link_path"
 }
 
-link_cliamp_config() {
-	local target="$REPO_DIR/config/cliamp/config.toml"
-	local config_path="$HOME/.config/cliamp/config.toml"
-	local backup_path="$config_path.pre-dotfiles"
-
-	mkdir -p "$HOME/.config/cliamp"
-	if [[ -e "$config_path" && ! -L "$config_path" ]]; then
-		if [[ -e "$backup_path" ]]; then
-			printf 'Refusing to replace %s because backup already exists: %s\n' "$config_path" "$backup_path" >&2
-			return 1
-		fi
-		mv "$config_path" "$backup_path"
-	fi
-	create_symlink "$target" "$config_path"
-}
-
 mkdir -p "$HOME/.config" "$HOME/.local"
 
 create_symlink "$REPO_DIR/config/xorg/xinitrc" "$HOME/.xinitrc"
 create_symlink "$REPO_DIR/config/alacritty" "$HOME/.config/alacritty"
+create_symlink "$REPO_DIR/config/ghostty" "$HOME/.config/ghostty"
 create_symlink "$REPO_DIR/config/nvim" "$HOME/.config/nvim"
 create_symlink "$REPO_DIR/config/picom" "$HOME/.config/picom"
 create_symlink "$REPO_DIR/config/dunst" "$HOME/.config/dunst"
 create_symlink "$REPO_DIR/config/voxtype" "$HOME/.config/voxtype"
 create_symlink "$REPO_DIR/config/yazi" "$HOME/.config/yazi"
-link_cliamp_config
 create_symlink "$REPO_DIR/config/helium-browser-flags.conf" "$HOME/.config/helium-browser-flags.conf"
 create_symlink "$REPO_DIR/config/mimeapps.list" "$HOME/.config/mimeapps.list"
 

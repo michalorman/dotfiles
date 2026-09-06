@@ -4,7 +4,7 @@ set -euo pipefail
 
 BOOTSTRAP=(base-devel git linux-headers)
 X11=(xorg-server xorg-xinit xorg-xkill xorg-xmodmap xorg-xrandr xorg-xrdb xorg-setxkbmap)
-DESKTOP=(alacritty dunst feh j4-dmenu-desktop lxappearance networkmanager nsxiv pacman-contrib picom playerctl pavucontrol slock thunar udiskie ueberzugpp xdg-utils)
+DESKTOP=(alacritty ghostty dunst feh j4-dmenu-desktop lxappearance networkmanager nsxiv pacman-contrib picom playerctl pavucontrol slock thunar udiskie ueberzugpp xdg-utils)
 CLI_TOOLS=(bat btop dash dua-cli eza fd fzf jq less man most neovim openssh ripgrep tmux tree-sitter-cli vim yazi zoxide)
 MEDIA=(ffmpeg gpu-screen-recorder imagemagick maim resvg slop swappy vlc vlc-plugin-ffmpeg)
 AUDIO=(pipewire pipewire-alsa pipewire-pulse wireplumber)
