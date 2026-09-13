@@ -1,0 +1,4 @@
+.thunar .shortcuts-pane treeview.view:selected {
+  color: #e9e9ed;
+  background-color: #27a1b9;
+}

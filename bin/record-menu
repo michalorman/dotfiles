@@ -1,8 +1,9 @@
 #!/bin/sh
 
 RECORDINGS_PATH="$HOME/Videos/Recordings"
-STATE_PATH="${XDG_RUNTIME_DIR:-/tmp}/record-menu-$UID"
+STATE_PATH="${XDG_RUNTIME_DIR:-/tmp}/record-menu-$(id -u)"
 PID_PATH="$STATE_PATH/gpu-screen-recorder.pid"
+LOG_PATH="$STATE_PATH/gpu-screen-recorder.log"
 
 menu() {
   dmenu -c -l 10 -i -bw 3 -F -h 35
@@ -66,14 +67,15 @@ start_recording() {
   set -- gpu-screen-recorder -w "$source" -f 50 -k h264 -c mp4 -fm cfr
   [ -n "$region" ] && set -- "$@" -region "$region"
   [ -n "$audio" ] && set -- "$@" -a "$audio"
-  "$@" -o "$path" >/dev/null 2>&1 &
+  sleep 0.5
+  "$@" -o "$path" >"$LOG_PATH" 2>&1 &
   printf '%s\n' "$!" > "$PID_PATH"
 
   sleep 0.2
   if is_recording; then
     notify "Recording started: $path"
   else
-    notify "Unable to start recording"
+    notify "Unable to start recording (see $LOG_PATH)"
     return 1
   fi
 }
@@ -84,8 +86,8 @@ choose_audio() {
   desktop_microphone="󰍬  Desktop + microphone"
   desktop_microphone_webcam="󰖠  Desktop + microphone + webcam"
 
-  chosen="$(printf '%s\n' "$no_audio" "$desktop_audio" "$desktop_microphone" "$desktop_microphone_webcam" | menu)"
-  case "$chosen" in
+  audio_chosen="$(printf '%s\n' "$no_audio" "$desktop_audio" "$desktop_microphone" "$desktop_microphone_webcam" | menu)"
+  case "$audio_chosen" in
     "$no_audio") audio="" ;;
     "$desktop_audio") audio="default_output" ;;
     "$desktop_microphone") audio="default_output|default_input" ;;
@@ -99,7 +101,7 @@ choose_audio() {
 }
 
 choose_recording() {
-  screen="󰍹  Screen"
+  screen="󰍹  Monitor"
   area="󰩭  Area"
   window="  Window"
   stop="󰑊  Stop recording"
@@ -107,19 +109,11 @@ choose_recording() {
 
   chosen="$(printf '%s\n' "$screen" "$area" "$window" "$stop" | menu)"
   case "$chosen" in
-    "$screen") source="HDMI-A-1" ;;
-    "$area")
-      region="$(slop -t 0 -f '%g')" || return 1
-      [ "$region" = "0x0+0+0" ] && return 1
-      source="region"
-      ;;
-    "$window")
-      source="$(slop -t 999999 -f '%i')" || return 1
-      case "$source" in ''|0|*[!0-9]*) return 1 ;; esac
-      ;;
     "$stop")
       stop_recording
       return 0
+      ;;
+    "$screen"|"$area"|"$window")
       ;;
     *) return 1 ;;
   esac
@@ -127,6 +121,20 @@ choose_recording() {
   webcam=0
   audio=""
   choose_audio || return 1
+
+  case "$chosen" in
+    "$screen")
+      source="$(slurp -o -r -f '%o')" || return 1
+      ;;
+    "$area")
+      region="$(slurp -f '%wx%h+%x+%y')" || return 1
+      source="region"
+      ;;
+    "$window")
+      source="portal"
+      ;;
+  esac
+
   if [ "$webcam" -eq 1 ]; then
     source="$source|/dev/video0;camera_width=1280;camera_height=720;camera_fps=30;pixfmt=mjpeg;width=25%;height=25%;halign=end;valign=end"
   fi

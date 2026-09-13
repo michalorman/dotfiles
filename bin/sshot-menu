@@ -1,11 +1,13 @@
 #!/bin/sh
 
-CAPTURES_PATH="$HOME/Pictures/Screenshots"
+set -eu
 
-[ ! -d "$CAPTURES_PATH" ] && mkdir -p "$CAPTURES_PATH"
+captures_path="$HOME/Pictures/Screenshots"
+
+mkdir -p "$captures_path"
 
 screenshot_path() {
-  printf '%s/%s.png' "$CAPTURES_PATH" "$(date +%F_%H-%M-%S)"
+  printf '%s/%s.png' "$captures_path" "$(date +%F_%H-%M-%S)"
 }
 
 notify_saved() {
@@ -17,6 +19,21 @@ edit_saved() {
   swappy -f "$1" >/dev/null 2>&1 &
 }
 
+visible_window_region() {
+  clients=$(hyprctl -j clients) || return 1
+  monitors=$(hyprctl -j monitors) || return 1
+  windows=$(printf '%s\n%s\n' "$clients" "$monitors" | jq -rs '
+    .[1] as $monitors
+    | ($monitors | map(.activeWorkspace.id)) as $workspaces
+    | .[0][]
+    | select(.mapped != false)
+    | select(.workspace.id as $id | $workspaces | index($id))
+    | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1]) \(((.class // "window") + ": " + (.title // "")) | gsub("[\r\n]"; " "))"
+  ') || return 1
+  [ -n "$windows" ] || return 1
+  printf '%s\n' "$windows" | slurp -r
+}
+
 now="󰇄  Desktop"
 win="  Window"
 area="󰒉  Selection"
@@ -26,14 +43,17 @@ chosen="$(printf "%s\n" "$now" "$win" "$area" | dmenu -c -l 10 -i -bw 3 -F -h 35
 case "$chosen" in
   "$now")
     path="$(screenshot_path)"
-    maim -u "$path" && edit_saved "$path"
+    sleep 0.5
+    grim "$path" && edit_saved "$path"
     ;;
   "$win")
+    region=$(visible_window_region) || exit 0
     path="$(screenshot_path)"
-    maim -ust 9999999 "$path" && edit_saved "$path"
+    grim -g "$region" "$path" && edit_saved "$path"
     ;;
   "$area")
+    region=$(slurp) || exit 0
     path="$(screenshot_path)"
-    maim -su "$path" && edit_saved "$path"
+    grim -g "$region" "$path" && edit_saved "$path"
     ;;
 esac

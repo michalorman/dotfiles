@@ -1,27 +1,89 @@
-#!/bin/bash
+#!/bin/sh
 
-WALLPAPER_DIR="$HOME/Wallpapers"
+set -eu
 
-if ! command -v nsxiv &> /dev/null; then
-    echo "Error: nsxiv is not installed."
+wallpaper_dir="$HOME/Wallpapers"
+state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/change-wallpaper"
+runtime_dir="${XDG_RUNTIME_DIR:-/tmp}/change-wallpaper"
+wallpaper_file="$state_dir/wallpaper"
+pid_file="$runtime_dir/swaybg.pid"
+
+apply_wallpaper() {
+  selected=$1
+
+  if [ ! -r "$selected" ]; then
+    printf 'Wallpaper is not readable: %s\n' "$selected" >&2
     exit 1
+  fi
+
+  mkdir -p "$state_dir" "$runtime_dir"
+  if [ -r "$pid_file" ]; then
+    read -r old_pid < "$pid_file" || old_pid=
+    if [ -n "$old_pid" ] \
+      && [ "$(readlink -f "/proc/$old_pid/exe" 2>/dev/null || true)" = "$(readlink -f "$(command -v swaybg)")" ]; then
+      kill "$old_pid" 2>/dev/null || true
+    fi
+  fi
+
+  printf '%s\n' "$selected" > "$wallpaper_file"
+  swaybg -i "$selected" -m stretch &
+  printf '%s\n' "$!" > "$pid_file"
+}
+
+if ! command -v swaybg >/dev/null 2>&1; then
+  printf 'change-wallpaper: swaybg is not installed.\n' >&2
+  exit 1
 fi
 
-if ! command -v feh &> /dev/null; then
-    echo "Error: feh is not installed."
-    exit 1
-fi
+case ${1:-} in
+  --restore)
+    [ $# -eq 1 ] || exit 2
+    [ -r "$wallpaper_file" ] || exit 0
+    IFS= read -r selected < "$wallpaper_file" || true
+    [ -n "$selected" ] || exit 0
+    apply_wallpaper "$selected"
+    ;;
+  --set)
+    [ $# -eq 2 ] || exit 2
+    apply_wallpaper "$2"
+    ;;
+  '')
+    if ! command -v swayimg >/dev/null 2>&1; then
+      printf 'change-wallpaper: swayimg is not installed.\n' >&2
+      exit 1
+    fi
+    if [ ! -d "$wallpaper_dir" ]; then
+      printf 'Wallpaper directory does not exist: %s\n' "$wallpaper_dir" >&2
+      exit 1
+    fi
 
-if [ ! -d "$WALLPAPER_DIR" ]; then
-    echo "Directory $WALLPAPER_DIR does not exist."
-    exit 1
-fi
+    umask 077
+    selection_file=$(mktemp)
+    trap 'rm -f "$selection_file"' EXIT HUP INT TERM
+    WALLPAPER_SELECTION_FILE=$selection_file swayimg --gallery --execute '
+      swayimg.gallery.thumb_size = 320
 
-SELECTED_IMAGE=$(nsxiv -ot "$WALLPAPER_DIR"/* 2>/dev/null)
+      local function select(image)
+        local output = image and io.open(os.getenv("WALLPAPER_SELECTION_FILE"), "w")
+        if output then
+          output:write(image.path)
+          output:close()
+          swayimg.exit()
+        end
+      end
 
-if [ -z "$SELECTED_IMAGE" ]; then
-    echo "No image selected."
-    exit 0
-fi
-
-feh --bg-scale "$SELECTED_IMAGE"
+      swayimg.gallery.on_key("Return", function()
+        select(swayimg.gallery.get_image())
+      end)
+      swayimg.viewer.on_key("Return", function()
+        select(swayimg.viewer.get_image())
+      end)
+    ' "$wallpaper_dir"
+    IFS= read -r selected < "$selection_file" || true
+    [ -n "${selected:-}" ] && apply_wallpaper "$selected"
+    ;;
+  *)
+    printf 'Usage: %s [--restore | --set IMAGE]\n' "$0" >&2
+    exit 2
+    ;;
+esac

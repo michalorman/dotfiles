@@ -1,5 +1,9 @@
 [opener]
-nsxiv = [{ run = "nsxiv %s", orphan = true, desc = "Open with nsxiv", for = "unix" }]
+swayimg = [{ run = "/home/snq/Code/opendwm/wayland/scripts/launch-normal swayimg %s", orphan = true, desc = "Open with swayimg", for = "unix" }]
+vlc = [{ run = "/home/snq/Code/opendwm/wayland/scripts/launch-normal vlc %s", orphan = true, desc = "Open with VLC", for = "unix" }]
 
 [open]
-prepend_rules = [{ mime = "image/*", use = ["nsxiv", "open"] }]
+prepend_rules = [
+  { mime = "image/*", use = ["swayimg", "open"] },
+  { mime = "video/*", use = ["vlc", "open"] },
+]

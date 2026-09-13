@@ -1,0 +1,14 @@
+onboarding = false
+[keys]
+prefix = "ctrl+a"
+switch_workspace = "prefix+shift+1..9"
+
+[ui]
+pane_scrollbars = false
+
+[ui.sound]
+enabled = false
+
+[theme]
+name = "tokyo-night"
+auto_switch = false

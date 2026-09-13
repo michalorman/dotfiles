@@ -2,23 +2,23 @@
 
 set -euo pipefail
 
-BOOTSTRAP=(base-devel git linux-headers)
-X11=(xorg-server xorg-xinit xorg-xkill xorg-xmodmap xorg-xrandr xorg-xrdb xorg-setxkbmap)
-DESKTOP=(alacritty ghostty dunst feh j4-dmenu-desktop lxappearance networkmanager nsxiv pacman-contrib picom playerctl pavucontrol slock thunar udiskie ueberzugpp xdg-utils)
-CLI_TOOLS=(bat btop dash dua-cli eza fd fzf jq less man most neovim openssh ripgrep tmux tree-sitter-cli vim yazi zoxide)
-MEDIA=(ffmpeg gpu-screen-recorder imagemagick maim resvg slop swappy vlc vlc-plugin-ffmpeg)
+BOOTSTRAP=(base-devel git linux-headers sudo)
+DESKTOP=(alacritty ffmpegthumbnailer ghostty dunst hyprland j4-dmenu-desktop libgsf networkmanager pacman-contrib playerctl pavucontrol quickshell swaybg swayimg swaylock thunar tumbler udiskie ueberzugpp xdg-desktop-portal-hyprland xdg-utils xorg-xwayland)
+CLI_TOOLS=(bat btop dash dua-cli eza fd fzf jq less man most neovim openssh ripgrep tree-sitter-cli vim wl-clipboard yazi zoxide)
+MEDIA=(ffmpeg grim gpu-screen-recorder imagemagick resvg slurp swappy vlc vlc-plugin-ffmpeg)
 AUDIO=(pipewire pipewire-alsa pipewire-pulse wireplumber)
 PRINTING=(cups cups-pdf sane-airscan simple-scan system-config-printer)
 FONTS=(noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-font-nerd)
 SHELL=(dash zsh zsh-syntax-highlighting zsh-completions zsh-autosuggestions)
-DWM_BUILD=(libx11 libxft libxinerama)
-DEVELOPMENT=(lua luarocks lsof)
-AMD_GRAPHICS=(amd-ucode lib32-mesa lib32-vulkan-radeon libva-utils linux-firmware mesa mesa-utils nvtop radeontop vdpauinfo vulkan-radeon vulkan-tools xf86-video-amdgpu)
+DMENU_BUILD=(libx11 libxft libxinerama)
+DEVELOPMENT=(lua luarocks lsof sassc)
+AMD_GRAPHICS=(amd-ucode lib32-mesa lib32-vulkan-radeon libva-utils linux-firmware mesa mesa-utils nvtop radeontop vdpauinfo vulkan-radeon vulkan-tools)
 NODE=(nodejs npm)
-AUR_TOOLS=(cliamp voxtype)
+AUR_TOOLS=(cliamp herdr voxtype)
 
-OPENDWM_REVISION=db5f1dae2bb83f05754d2d940b506d6b715417af
+OPENDWM_REVISION=0591120fc648c5499f38e9bb76cc71c91bf23816
 DMENU_REVISION=ce16f01a5637ebe604a7ee9d714b2715cc3f0e71
+TOKYONIGHT_GTK_REVISION=6c340e058e84c1975a038a8e5d1e384477225dc0
 
 usage() {
 	printf 'Usage: %s [--amd] [--printing] [--node]\n' "$0"
@@ -57,8 +57,20 @@ fi
 TARGET_USER="${SUDO_USER:-root}"
 PASSWD_ENTRY="$(getent passwd "$TARGET_USER")"
 IFS=: read -r _ _ _ _ _ TARGET_HOME TARGET_SHELL <<< "$PASSWD_ENTRY"
+TARGET_UID="$(id -u "$TARGET_USER")"
 TARGET_GROUP="$(id -gn "$TARGET_USER")"
+TARGET_RUNTIME_DIR="/run/user/$TARGET_UID"
 CODE_DIR="$TARGET_HOME/Code"
+
+if [[ "$TARGET_USER" == "root" ]]; then
+	printf 'Run this script through sudo from the intended desktop user.\n' >&2
+	exit 1
+fi
+if [[ ! -d "$TARGET_RUNTIME_DIR" || "$(stat -c %u "$TARGET_RUNTIME_DIR")" != "$TARGET_UID" ]]; then
+	printf 'Desktop user runtime directory is unavailable: %s\n' "$TARGET_RUNTIME_DIR" >&2
+	printf "Run this script from the desktop user's active login session.\n" >&2
+	exit 1
+fi
 
 run_as_target_user() {
 	if [[ "$TARGET_USER" == "root" ]]; then
@@ -107,7 +119,27 @@ enable_multilib() {
 	mv -f "$tmp_conf" "$pacman_conf"
 }
 
-install_git_project() {
+github_repo_path() {
+	local url="$1"
+	case "$url" in
+		https://github.com/*) printf '%s' "${url#https://github.com/}" ;;
+		git@github.com:*) printf '%s' "${url#git@github.com:}" ;;
+		*) return 1 ;;
+	esac
+}
+
+origins_match() {
+	local actual="$1"
+	local expected="$2"
+	local actual_path
+	local expected_path
+
+	actual_path="$(github_repo_path "$actual" 2>/dev/null || true)"
+	expected_path="$(github_repo_path "$expected" 2>/dev/null || true)"
+	[[ -n "$actual_path" && "${actual_path%.git}" == "${expected_path%.git}" ]]
+}
+
+checkout_git_project() {
 	local name="$1"
 	local repo_url="$2"
 	local revision="$3"
@@ -121,22 +153,59 @@ install_git_project() {
 	if [[ ! -d "$repo_dir" ]]; then
 		run_as_target_user git clone "$repo_url" "$repo_dir"
 	else
-		if [[ "$(run_as_target_user git -C "$repo_dir" remote get-url origin)" != "$repo_url" ]]; then
+		if ! origins_match "$(run_as_target_user git -C "$repo_dir" remote get-url origin)" "$repo_url"; then
 			printf 'Refusing to use %s because its origin does not match %s.\n' "$repo_dir" "$repo_url" >&2
 			return 1
 		fi
 	fi
 	run_as_target_user git -C "$repo_dir" fetch --depth 1 origin "$revision"
 	run_as_target_user git -C "$repo_dir" checkout --detach "$revision"
+}
+
+install_dmenu() {
+	local repo_dir="$CODE_DIR/dmenu"
+
+	checkout_git_project dmenu https://github.com/michalorman/dmenu.git "$DMENU_REVISION"
 
 	if [[ ! -f "$repo_dir/config.h" ]]; then
-		run_as_target_user cp "$repo_dir/examples/config.h" "$repo_dir/config.h"
+		run_as_target_user cp "$repo_dir/config.def.h" "$repo_dir/config.h"
 	else
-		printf '%s config.h already exists; leaving it unchanged.\n' "$name"
+		printf 'dmenu config.h already exists; leaving it unchanged.\n'
 	fi
 
 	run_as_target_user make -C "$repo_dir"
-	make -C "$repo_dir" install
+	make -C "$repo_dir" PREFIX=/usr/local install
+}
+
+install_opendwm_wayland() {
+	local repo_dir="$CODE_DIR/opendwm"
+
+	checkout_git_project opendwm https://github.com/michalorman/opendwm.git "$OPENDWM_REVISION"
+	run_as_target_user env \
+		XDG_CONFIG_HOME="$TARGET_HOME/.config" \
+		XDG_RUNTIME_DIR="$TARGET_RUNTIME_DIR" \
+		PATH="$TARGET_HOME/.local/bin:/usr/local/bin:/usr/bin:/bin" \
+		/usr/bin/bash "$repo_dir/wayland/setup.sh" --force
+	run_as_target_user env \
+		XDG_CONFIG_HOME="$TARGET_HOME/.config" \
+		XDG_RUNTIME_DIR="$TARGET_RUNTIME_DIR" \
+		PATH="$TARGET_HOME/.local/bin:/usr/local/bin:/usr/bin:/bin" \
+		/usr/bin/bash "$repo_dir/wayland/setup.sh" --check
+}
+
+install_tokyonight_gtk() {
+	local repo_dir="$CODE_DIR/tokyonight-gtk-theme"
+
+	checkout_git_project tokyonight-gtk-theme https://github.com/Fausto-Korpsvart/Tokyonight-GTK-Theme.git "$TOKYONIGHT_GTK_REVISION"
+	run_as_target_user env \
+		XDG_DATA_HOME="$TARGET_HOME/.local/share" \
+		/usr/bin/bash "$repo_dir/themes/install.sh" \
+		--dest "$TARGET_HOME/.local/share/themes" \
+		--theme default \
+		--color dark \
+		--size standard
+	run_as_target_user install -d "$TARGET_HOME/.local/share/icons"
+	run_as_target_user cp -a "$repo_dir/icons/Tokyonight-Dark" "$TARGET_HOME/.local/share/icons/"
 }
 
 verify_executable() {
@@ -146,7 +215,7 @@ verify_executable() {
 	fi
 }
 
-PACKAGES=("${BOOTSTRAP[@]}" "${X11[@]}" "${DESKTOP[@]}" "${CLI_TOOLS[@]}" "${MEDIA[@]}" "${AUDIO[@]}" "${FONTS[@]}" "${SHELL[@]}" "${DWM_BUILD[@]}" "${DEVELOPMENT[@]}")
+PACKAGES=("${BOOTSTRAP[@]}" "${DESKTOP[@]}" "${CLI_TOOLS[@]}" "${MEDIA[@]}" "${AUDIO[@]}" "${FONTS[@]}" "${SHELL[@]}" "${DMENU_BUILD[@]}" "${DEVELOPMENT[@]}")
 
 if (( INSTALL_ALL || INSTALL_AMD )); then
 	enable_multilib
@@ -171,8 +240,9 @@ fi
 
 install -d -o "$TARGET_USER" -g "$TARGET_GROUP" "$CODE_DIR"
 
-install_git_project opendwm https://github.com/michalorman/opendwm.git "$OPENDWM_REVISION"
-install_git_project dmenu https://github.com/michalorman/dmenu.git "$DMENU_REVISION"
+install_dmenu
+install_opendwm_wayland
+install_tokyonight_gtk
 
 systemctl enable NetworkManager
 systemctl enable fstrim.timer
@@ -183,9 +253,13 @@ if (( INSTALL_ALL || INSTALL_PRINTING )); then
 fi
 
 verify_executable /usr/local/bin/dmenu
-verify_executable /usr/local/bin/opendwm
-verify_executable /usr/bin/slock
-verify_executable /usr/bin/slop
+verify_executable /usr/local/bin/start-opendwm-wayland
+if [[ ! -r /usr/share/wayland-sessions/opendwm-wayland.desktop ]]; then
+	printf 'Expected Wayland session entry is unavailable.\n' >&2
+	exit 1
+fi
+verify_executable /usr/bin/swaylock
+verify_executable /usr/bin/slurp
 verify_executable /usr/bin/wpctl
 
 printf 'Install AUR tools separately: %s\n' "${AUR_TOOLS[*]}"

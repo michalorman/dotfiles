@@ -11,13 +11,13 @@ chosen="$(printf "%s\n" "$lock" "$sleep" "$hibernate" "$restart" "$shutdown" "$l
 
 case "$chosen" in
   "$lock")
-    slock
+    swaylock --daemonize --color 000000
     ;;
   "$sleep")
-    systemctl suspend
+    swaylock --daemonize --color 000000 && systemctl suspend
     ;;
   "$hibernate")
-    systemctl hibernate
+    swaylock --daemonize --color 000000 && systemctl hibernate
     ;;
   "$restart")
     systemctl reboot
@@ -26,6 +26,6 @@ case "$chosen" in
     systemctl poweroff
     ;;
   "$logout")
-    pkill -KILL -x dwm
+    hyprctl dispatch 'hl.dsp.exit()'
     ;;
 esac

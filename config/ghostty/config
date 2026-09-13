@@ -8,4 +8,6 @@ background-opacity = 0.9
 window-padding-x = 4
 window-padding-y = 4
 
+scrollbar = never
+
 keybind = f11=toggle_fullscreen
