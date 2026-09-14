@@ -1,0 +1,42 @@
+#!/bin/sh
+
+set -eu
+
+width_factor=0.15
+
+if [ "${1:-}" = "--launcher" ]; then
+  width_factor=0.2
+  shift
+fi
+
+if [ "${1:-}" = "--run" ]; then
+  shift
+  command=bemenu-run
+else
+  command=bemenu
+fi
+
+exec env BEMENU_BACKEND=wayland "$command" \
+  --center \
+  --border 3 \
+  --bdr '#7aa2f7' \
+  --border-radius 0 \
+  --line-height 35 \
+  --width-factor "$width_factor" \
+  --list 10 down \
+  --ignorecase \
+  --prompt '' \
+  --fn 'JetBrainsMono Nerd Font 14' \
+  --tb '#1a1b26' \
+  --tf '#a9b1d6' \
+  --fb '#1a1b26' \
+  --ff '#a9b1d6' \
+  --cb '#7aa2f7' \
+  --cf '#1a1b26' \
+  --nb '#1a1b26' \
+  --nf '#a9b1d6' \
+  --hb '#7aa2f7' \
+  --hf '#1a1b26' \
+  --sb '#7aa2f7' \
+  --sf '#1a1b26' \
+  "$@"

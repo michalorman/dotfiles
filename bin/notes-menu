@@ -4,14 +4,14 @@ NOTES_DIR="$HOME/Notes"
 
 notes="$(eza -s modified -r -1 "$NOTES_DIR")"
 
-selected="$(printf "%s\n" "New note" "$notes" | dmenu -c -l 10 -i -bw 3 -h 35)"
+selected="$(printf "%s\n" "New note" "$notes" | bemenu-menu)"
 
 if [ -z "$selected" ]; then
   exit 0
 fi
 
 if [ "$selected" = "New note" ]; then
-  new_note=$(dmenu -p "Enter new note name:" -c -l 1 -bw 3 </dev/null)
+  new_note=$(bemenu-menu --prompt "Enter new note name:" --list 1 down --width-factor 0.2 </dev/null)
   if [ -n "$new_note" ]; then
     case "$new_note" in
       *.*) ;;

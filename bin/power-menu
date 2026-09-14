@@ -21,7 +21,7 @@ restart="󰜉  Restart"
 shutdown="󰐥  Shutdown"
 logout="󰍃  Logout"
 
-chosen="$(printf "%s\n" "$lock" "$sleep" "$hibernate" "$restart" "$shutdown" "$logout" | dmenu -c -l 10 -i -bw 3 -F -h 35)"
+chosen="$(printf "%s\n" "$lock" "$sleep" "$hibernate" "$restart" "$shutdown" "$logout" | bemenu-menu)"
 
 case "$chosen" in
   "$lock")

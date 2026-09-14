@@ -3,21 +3,19 @@
 set -euo pipefail
 
 BOOTSTRAP=(base-devel git linux-headers sudo)
-DESKTOP=(alacritty ffmpegthumbnailer ghostty hyprland j4-dmenu-desktop libgsf libnotify mako networkmanager pacman-contrib playerctl pavucontrol quickshell swaybg swayimg swaylock thunar tumbler udiskie ueberzugpp xdg-desktop-portal-hyprland xdg-utils xorg-xwayland)
+DESKTOP=(alacritty bemenu bemenu-wayland ffmpegthumbnailer ghostty hyprland j4-dmenu-desktop libgsf libnotify mako networkmanager pacman-contrib playerctl pavucontrol quickshell swaybg swayimg swaylock thunar tumbler udiskie ueberzugpp xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xdg-utils)
 CLI_TOOLS=(bat btop dash dua-cli eza fd fzf jq less man most neovim openssh ripgrep tree-sitter-cli vim wl-clipboard yazi zoxide)
 MEDIA=(ffmpeg grim gpu-screen-recorder imagemagick resvg slurp swappy vlc vlc-plugin-ffmpeg)
 AUDIO=(pipewire pipewire-alsa pipewire-pulse wireplumber)
 PRINTING=(cups cups-pdf sane-airscan simple-scan system-config-printer)
 FONTS=(noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-font-nerd)
 SHELL=(dash zsh zsh-syntax-highlighting zsh-completions zsh-autosuggestions)
-DMENU_BUILD=(libx11 libxft libxinerama)
 DEVELOPMENT=(lua luarocks lsof sassc)
 AMD_GRAPHICS=(amd-ucode lib32-mesa lib32-vulkan-radeon libva-utils linux-firmware mesa mesa-utils nvtop radeontop vdpauinfo vulkan-radeon vulkan-tools)
 NODE=(nodejs npm)
 AUR_TOOLS=(cliamp herdr voxtype)
 
 OPENDWM_REVISION=0591120fc648c5499f38e9bb76cc71c91bf23816
-DMENU_REVISION=ce16f01a5637ebe604a7ee9d714b2715cc3f0e71
 TOKYONIGHT_GTK_REVISION=6c340e058e84c1975a038a8e5d1e384477225dc0
 
 usage() {
@@ -162,21 +160,6 @@ checkout_git_project() {
 	run_as_target_user git -C "$repo_dir" checkout --detach "$revision"
 }
 
-install_dmenu() {
-	local repo_dir="$CODE_DIR/dmenu"
-
-	checkout_git_project dmenu https://github.com/michalorman/dmenu.git "$DMENU_REVISION"
-
-	if [[ ! -f "$repo_dir/config.h" ]]; then
-		run_as_target_user cp "$repo_dir/config.def.h" "$repo_dir/config.h"
-	else
-		printf 'dmenu config.h already exists; leaving it unchanged.\n'
-	fi
-
-	run_as_target_user make -C "$repo_dir"
-	make -C "$repo_dir" PREFIX=/usr/local install
-}
-
 install_opendwm_wayland() {
 	local repo_dir="$CODE_DIR/opendwm"
 	local hyprland_config="$repo_dir/wayland/hyprland/hyprland.lua"
@@ -221,7 +204,7 @@ verify_executable() {
 	fi
 }
 
-PACKAGES=("${BOOTSTRAP[@]}" "${DESKTOP[@]}" "${CLI_TOOLS[@]}" "${MEDIA[@]}" "${AUDIO[@]}" "${FONTS[@]}" "${SHELL[@]}" "${DMENU_BUILD[@]}" "${DEVELOPMENT[@]}")
+PACKAGES=("${BOOTSTRAP[@]}" "${DESKTOP[@]}" "${CLI_TOOLS[@]}" "${MEDIA[@]}" "${AUDIO[@]}" "${FONTS[@]}" "${SHELL[@]}" "${DEVELOPMENT[@]}")
 
 if (( INSTALL_ALL || INSTALL_AMD )); then
 	enable_multilib
@@ -246,7 +229,6 @@ fi
 
 install -d -o "$TARGET_USER" -g "$TARGET_GROUP" "$CODE_DIR"
 
-install_dmenu
 install_opendwm_wayland
 install_tokyonight_gtk
 
@@ -258,7 +240,6 @@ if (( INSTALL_ALL || INSTALL_PRINTING )); then
 	systemctl enable cups
 fi
 
-verify_executable /usr/local/bin/dmenu
 verify_executable /usr/local/bin/start-opendwm-wayland
 if [[ ! -r /usr/share/wayland-sessions/opendwm-wayland.desktop ]]; then
 	printf 'Expected Wayland session entry is unavailable.\n' >&2
