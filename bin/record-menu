@@ -10,7 +10,7 @@ menu() {
 }
 
 notify() {
-  dunstify "$1"
+  notify-send "$1"
 }
 
 clear_stale_pid() {

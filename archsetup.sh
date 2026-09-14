@@ -3,7 +3,7 @@
 set -euo pipefail
 
 BOOTSTRAP=(base-devel git linux-headers sudo)
-DESKTOP=(alacritty ffmpegthumbnailer ghostty dunst hyprland j4-dmenu-desktop libgsf networkmanager pacman-contrib playerctl pavucontrol quickshell swaybg swayimg swaylock thunar tumbler udiskie ueberzugpp xdg-desktop-portal-hyprland xdg-utils xorg-xwayland)
+DESKTOP=(alacritty ffmpegthumbnailer ghostty hyprland j4-dmenu-desktop libgsf libnotify mako networkmanager pacman-contrib playerctl pavucontrol quickshell swaybg swayimg swaylock thunar tumbler udiskie ueberzugpp xdg-desktop-portal-hyprland xdg-utils xorg-xwayland)
 CLI_TOOLS=(bat btop dash dua-cli eza fd fzf jq less man most neovim openssh ripgrep tree-sitter-cli vim wl-clipboard yazi zoxide)
 MEDIA=(ffmpeg grim gpu-screen-recorder imagemagick resvg slurp swappy vlc vlc-plugin-ffmpeg)
 AUDIO=(pipewire pipewire-alsa pipewire-pulse wireplumber)
@@ -179,8 +179,14 @@ install_dmenu() {
 
 install_opendwm_wayland() {
 	local repo_dir="$CODE_DIR/opendwm"
+	local hyprland_config="$repo_dir/wayland/hyprland/hyprland.lua"
 
 	checkout_git_project opendwm https://github.com/michalorman/opendwm.git "$OPENDWM_REVISION"
+	if ! run_as_target_user grep -Fqx '    hl.exec_cmd("dunst")' "$hyprland_config"; then
+		printf 'Expected Dunst autostart command is unavailable: %s\n' "$hyprland_config" >&2
+		return 1
+	fi
+	run_as_target_user sed -i 's/hl\.exec_cmd("dunst")/hl.exec_cmd("mako")/' "$hyprland_config"
 	run_as_target_user env \
 		XDG_CONFIG_HOME="$TARGET_HOME/.config" \
 		XDG_RUNTIME_DIR="$TARGET_RUNTIME_DIR" \

@@ -11,7 +11,7 @@ screenshot_path() {
 }
 
 notify_saved() {
-  dunstify "Screenshot saved to $1"
+  notify-send "Screenshot saved to $1"
 }
 
 edit_saved() {
