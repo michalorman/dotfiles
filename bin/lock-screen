@@ -1,0 +1,13 @@
+#!/bin/sh
+
+wallpaper_file="${XDG_STATE_HOME:-$HOME/.local/state}/change-wallpaper/wallpaper"
+
+wallpaper=
+if [ -r "$wallpaper_file" ]; then
+  IFS= read -r wallpaper < "$wallpaper_file" || wallpaper=
+  [ -r "$wallpaper" ] || wallpaper=
+fi
+
+pidof hyprlock >/dev/null 2>&1 && exit 0
+
+exec env LOCK_WALLPAPER=$wallpaper hyprlock --immediate-render --no-fade-in

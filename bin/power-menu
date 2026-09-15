@@ -1,17 +1,7 @@
 #!/bin/sh
 
-wallpaper_file="${XDG_STATE_HOME:-$HOME/.local/state}/change-wallpaper/wallpaper"
-
 lock_screen() {
-  if [ -r "$wallpaper_file" ]; then
-    IFS= read -r wallpaper < "$wallpaper_file" || wallpaper=
-    if [ -n "$wallpaper" ] && [ -r "$wallpaper" ]; then
-      swaylock --daemonize --image "$wallpaper" --scaling stretch
-      return
-    fi
-  fi
-
-  swaylock --daemonize --color 000000
+  lock-screen
 }
 
 lock="󰌾  Lock"
@@ -28,10 +18,10 @@ case "$chosen" in
     lock_screen
     ;;
   "$sleep")
-    lock_screen && systemctl suspend
+    systemctl suspend
     ;;
   "$hibernate")
-    lock_screen && systemctl hibernate
+    systemctl hibernate
     ;;
   "$restart")
     systemctl reboot

@@ -4,7 +4,7 @@ window-decoration = false
 font-family = JetBrainsMono Nerd Font
 font-size = 12
 
-background-opacity = 0.9
+background-opacity = 0.85
 window-padding-x = 4
 window-padding-y = 4
 
