@@ -1,0 +1,20 @@
+[general]
+initial-tool = "brush"
+corner-roundness = 0
+copy-command = "wl-copy"
+floating-hack = true
+
+[font]
+family = "JetBrainsMono Nerd Font"
+
+[color-palette]
+palette = [
+    "#ff7a93ff",
+    "#ff9e64ff",
+    "#e0af68ff",
+    "#9ece6aff",
+    "#7dcfffff",
+    "#7aa2f7ff",
+    "#bb9af7ff",
+    "#c0caf5ff",
+]

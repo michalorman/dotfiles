@@ -5,7 +5,7 @@ set -euo pipefail
 BOOTSTRAP=(base-devel git linux-headers sudo)
 DESKTOP=(alacritty awww bemenu bemenu-wayland ffmpegthumbnailer ghostty hyprland hypridle hyprlock j4-dmenu-desktop libgsf libnotify mako networkmanager pacman-contrib playerctl pavucontrol quickshell swaybg swayimg thunar tumbler udiskie ueberzugpp xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xdg-utils)
 CLI_TOOLS=(bat btop dash dua-cli eza fd fzf jq less man most neovim openssh ripgrep tree-sitter-cli vim wl-clipboard yazi zoxide)
-MEDIA=(ffmpeg grim gpu-screen-recorder imagemagick resvg slurp swappy vlc vlc-plugin-ffmpeg)
+MEDIA=(ffmpeg grim gpu-screen-recorder imagemagick resvg satty slurp vlc vlc-plugin-ffmpeg)
 AUDIO=(pipewire pipewire-alsa pipewire-pulse wireplumber)
 PRINTING=(cups cups-pdf sane-airscan simple-scan system-config-printer)
 FONTS=(noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-font-nerd)

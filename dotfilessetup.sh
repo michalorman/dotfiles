@@ -32,23 +32,7 @@ create_symlink() {
 	ln -s "$target" "$link_path"
 }
 
-remove_symlink() {
-	local target="$1"
-	local link_path="$2"
-
-	if [[ -L "$link_path" && "$(readlink "$link_path")" == "$target" ]]; then
-		rm "$link_path"
-	fi
-}
-
 mkdir -p "$HOME/.config" "$HOME/.local"
-
-remove_symlink "$REPO_DIR/config/xorg/xinitrc" "$HOME/.xinitrc"
-remove_symlink "$REPO_DIR/config/picom" "$HOME/.config/picom"
-remove_symlink "$REPO_DIR/config/systemd/user/x11-session.target" "$HOME/.config/systemd/user/x11-session.target"
-remove_symlink "$REPO_DIR/config/tmux/tmux.conf" "$HOME/.tmux.conf"
-remove_symlink "$REPO_DIR/config/dunst" "$HOME/.config/dunst"
-remove_symlink "$REPO_DIR/config/swaylock" "$HOME/.config/swaylock"
 
 create_symlink "$REPO_DIR/config/alacritty" "$HOME/.config/alacritty"
 create_symlink "$REPO_DIR/config/ghostty" "$HOME/.config/ghostty"
@@ -61,6 +45,7 @@ create_symlink "$REPO_DIR/config/gtk-3.0/gtk.css" "$HOME/.config/gtk-3.0/gtk.css
 create_symlink "$REPO_DIR/config/gtk-4.0/settings.ini" "$HOME/.config/gtk-4.0/settings.ini"
 create_symlink "$REPO_DIR/config/nvim" "$HOME/.config/nvim"
 create_symlink "$REPO_DIR/config/mako" "$HOME/.config/mako"
+create_symlink "$REPO_DIR/config/satty" "$HOME/.config/satty"
 create_symlink "$REPO_DIR/config/voxtype" "$HOME/.config/voxtype"
 create_symlink "$REPO_DIR/config/yazi" "$HOME/.config/yazi"
 create_symlink "$REPO_DIR/config/helium-browser-flags.conf" "$HOME/.config/helium-browser-flags.conf"

@@ -16,7 +16,7 @@ notify_saved() {
 
 edit_saved() {
   notify_saved "$1"
-  swappy -f "$1" >/dev/null 2>&1 &
+  satty --filename "$1" --output-filename "$1" >/dev/null 2>&1 &
 }
 
 visible_window_region() {
